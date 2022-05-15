@@ -1,9 +1,13 @@
 import React from 'react'
+import { Sidebar } from './Sidebar'
+import { TestScreen } from './TestScreen'
 
 export const PrincipalPageScreen = () => {
   return (
     <div>
-        <h1>PrincipalPageScreen</h1>
+        <Sidebar />
+        <TestScreen />
+
     </div>
   )
 }
