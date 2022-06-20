@@ -18,20 +18,21 @@ export const RegisterScreen = () => {
         password: '1234567',
         password2: '1234567',
         codigo: 1234,
+        rol: 'student'
     })
 
-    const {name, email, password, password2, codigo} = formValues
+    const {name, email, password, password2, codigo, rol} = formValues
 
     const handleRegister = e => {
         e.preventDefault()
 
         if (isFormValid()) {
-            dispatch(startRegisterWithEmailPassword(email, password, name, codigo))
+            dispatch(startRegisterWithEmailPassword(email, password, name, codigo, rol))
         }
     }
 
     const isFormValid = () => {
-        if (name.trim().length <= 5) {
+        if (name.trim().length < 5) {
             dispatch(setError('El nombre es requerido'))
             return false
         } else if (!validator.isEmail(email.trim())) {

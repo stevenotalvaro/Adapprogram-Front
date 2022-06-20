@@ -1,13 +1,13 @@
 import React from 'react'
 import { Sidebar } from './Sidebar'
-import { TestScreen } from './TestScreen'
 
 export const PrincipalPageScreen = () => {
+    // const rol = useSelector( state => state.auth.typeUser.rol );
   return (
     <div>
         <Sidebar />
-        <TestScreen />
-
+        {/* {rol === 'admin' && <AdminScreen />} */}
+        x
     </div>
   )
 }

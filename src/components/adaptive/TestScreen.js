@@ -6,29 +6,30 @@ export const TestScreen = () => {
         <h1>Test para determinar el Canal de Aprendizaje de Preferencia</h1>
         <h3>INSTRUCCIÓN: Lea cuidadosamente cada oración y piense de qué manera se aplica a usted. En cada línea escriba el número que mejor describe su reacción a cada oración.</h3>
         <div className='test__valoracion'>
-            <table class="default">
+            <table className="default">
+                <tbody>
 
-                <tr>
-                    <td>5</td>
-                    <td>Casi siempre</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Frecuentemente</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>A veces</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Rara vez</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Casi nunca</td>
-                </tr>
-
+                    <tr>
+                        <td>5</td>
+                        <td>Casi siempre</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Frecuentemente</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>A veces</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rara vez</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Casi nunca</td>
+                    </tr>
+                </tbody>
             </table>            
         </div>
         <form className='test__form'>

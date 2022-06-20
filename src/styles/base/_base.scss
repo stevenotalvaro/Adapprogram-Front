@@ -1,5 +1,5 @@
 * {
-    font-family:  Helvetica, Arial, sans-serif;
+    font-family: sans-serif, 'SegoEui', Helvetica, Arial, sans-serif;
     margin: 0px;
 }
 
@@ -31,4 +31,9 @@ main {
 
 .pointer {
     cursor: pointer;
+}
+
+@font-face {
+    font-family: 'SegoEui';
+    src: url(../SEGOEUI.TTF);
 }

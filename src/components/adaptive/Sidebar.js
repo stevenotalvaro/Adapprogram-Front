@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { startLogout } from '../../actions/auth';
+import { rolLogoutCleaning } from '../../actions/rol';
 
 export const Sidebar = () => {
 
@@ -10,6 +11,9 @@ export const Sidebar = () => {
     const handleLogout = () => {
         dispatch(startLogout())
     }
+    
+    
+    
 
   return (
     <div className='adaptive__sidebar'>
