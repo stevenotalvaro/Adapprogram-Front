@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import validator from 'validator'
 import { startRegisterWithEmailPassword } from '../../actions/auth'
 import { removeError, setError } from '../../actions/ui'
+import { loadCodeTeacher } from '../../helpers/loadCodeTeacher'
 
 import { useForm } from '../../hooks/useForm'
 
@@ -23,15 +24,17 @@ export const RegisterScreen = () => {
 
     const {name, email, password, password2, codigo, rol} = formValues
 
-    const handleRegister = e => {
+    const handleRegister = async e => {
         e.preventDefault()
 
-        if (isFormValid()) {
+        if (await isFormValid()) {
             dispatch(startRegisterWithEmailPassword(email, password, name, codigo, rol))
         }
     }
 
-    const isFormValid = () => {
+    const isFormValid = async () => {
+        const loadCodeTeacher2 = await loadCodeTeacher(codigo)
+        console.log(loadCodeTeacher2)
         if (name.trim().length < 5) {
             dispatch(setError('El nombre es requerido'))
             return false
@@ -45,8 +48,12 @@ export const RegisterScreen = () => {
             dispatch(setError('Contraseña no son iguales'))
             console.log('Password should be at least 6 characters and match each other')
             return false
+        } else if (!loadCodeTeacher2) {
+            dispatch(setError('EL codigo no existe'))
+            console.log("codigo no existe")
+            return false
         }
-
+        console.log("1")
         dispatch(removeError())
         return true
     }
@@ -100,9 +107,9 @@ export const RegisterScreen = () => {
                     onChange={handleInputChange}
                 />
                 <input
-                    type='number'
+                    type='text'
                     placeholder='Codigo de Maestro'
-                    name='codigos'
+                    name='codigo'
                     className='auth__input'
                     value={codigo}
                     onChange={handleInputChange}

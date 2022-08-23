@@ -1,10 +1,43 @@
-.adaptive__sidebar {
+.adaptive__sidebar, .navbar__teacher-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 50px;
     background-color: $red;
     color: white;
+}
+
+.navbar__teacher-container {
+    padding: 0;
+    height: 60px;
+    .navbar__teacher-left {
+        width: 25%;
+        color: $dark-grey;
+        background-color: white;
+        height: 100%;
+        font-size: 20px;
+        font-family: 'SegoEui';
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+            padding-right: 10px;
+        }
+    }
+    .navbar__teacher-right {
+        width: 75%;
+        font-size: 20px;
+        font-family: 'SegoEui';
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        i {
+            padding-left: 25px;
+        }
+    }
 }
 
 .container {

@@ -13,4 +13,12 @@ export const types = {
     
     teachersLoad: '[Teachers] Teacher Rol Load',
     teachersLogoutCleaning: '[Teachers] Logout Cleaning',
+
+    groupsAddNew: '[Groups] New Group',
+    groupsActive: '[Groups] Set active group',
+    groupsLoad: '[Groups] Load groups',
+    groupsUpdated: '[Groups] Update group saves',
+    groupsLoadoutCleaning: '[Groups] Logout Cleaning',
+
+    groupsScreenChange: '[Groups] Change'
 }

@@ -4,7 +4,8 @@ import { finishLoading, startLoading } from './ui'
 import Swal from 'sweetalert2'
 import { rolLogoutCleaning, setRol } from './rol'
 import { loadRol } from '../helpers/loadRol'
-import { useSelector } from 'react-redux'
+import { groupLogout } from './groups'
+import { loadCodeTeacher } from '../helpers/loadCodeTeacher'
 
 
 export const startLoginEmailPassword = (email, password) => {
@@ -59,8 +60,13 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
         }
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async({user}) => {
+                
                 await user.updateProfile({displayName:name})
                 await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
+                
+                const loadCodeTeacherString = await loadCodeTeacher(codigo);
+                await db.collection(`teachers/${loadCodeTeacherString}/students/`).add(newRolUser);
+                
                 dispatch(
                     login(user.uid, user.displayName, newRolUser)
                 )
@@ -86,6 +92,7 @@ export const startLogout = () => {
         await firebase.auth().signOut()
         dispatch(logout())
         dispatch(rolLogoutCleaning())
+        dispatch(groupLogout())
     }
 }
 

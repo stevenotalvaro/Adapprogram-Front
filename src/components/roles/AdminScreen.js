@@ -12,13 +12,7 @@ export const AdminScreen = () => {
     const dispatch = useDispatch()
     const {msgError} = useSelector(state => state.ui)
     
-    const generarID = () => {
-        const random = Math.random().toString(36).substr(2).toUpperCase();
-        const fecha = Date.now().toString(36);
     
-        return (random + fecha).substr(1,5);
-    }
-    const generedId = generarID();
 
     const [formValues, handleInputChange] = useForm({
         name: 'Nando fernando',
@@ -82,7 +76,7 @@ export const AdminScreen = () => {
                         <form onSubmit={handleRegister}>
                             <label 
                                 for="nombre" 
-                                class="admin__box-label"
+                                className="admin__box-label"
                             >
                                 Nombre del Maestro:
                             </label>
@@ -100,7 +94,7 @@ export const AdminScreen = () => {
 
                             <label 
                                 for="email" 
-                                class="admin__box-label"
+                                className="admin__box-label"
                             >
                                 Email del Maestro:
                             </label>
@@ -117,7 +111,7 @@ export const AdminScreen = () => {
                             />
                             <label 
                                 for="password" 
-                                class="admin__box-label"
+                                className="admin__box-label"
                             >
                                 Password del Maestro:
                             </label>
@@ -134,7 +128,7 @@ export const AdminScreen = () => {
 
                             <label 
                                 for="password2" 
-                                class="admin__box-label"
+                                className="admin__box-label"
                             >
                                 Confirma el password:
                             </label>

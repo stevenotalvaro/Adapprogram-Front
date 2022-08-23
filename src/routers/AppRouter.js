@@ -15,6 +15,7 @@ import { AuthRol } from './AuthRol';
 import { setRol } from '../actions/rol';
 import { loadTeachers } from '../helpers/loadTeachers';
 import { setTeachers } from '../actions/teachers';
+import { startLoadingGroups } from '../actions/groups';
 
 export const AppRouter = () => {
 
@@ -30,8 +31,11 @@ export const AppRouter = () => {
       if(user?.uid) {
         dispatch(login(user.uid, user.displayName))
         setIsLoggedIn(true)
-        
+
         const rol = await loadRol(user.uid)
+        
+        dispatch(startLoadingGroups(user.uid))
+        
         if (rol === 'admin') {
           const teachers = await loadTeachers();
           dispatch(setTeachers(teachers))

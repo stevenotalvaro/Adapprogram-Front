@@ -1,0 +1,18 @@
+.nothing__main-content {
+    align-items: center;
+    background-color: $red;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 110px) ;
+    border-radius: 20px;
+
+    p {
+        font-size: 25px;
+    }
+
+    i {
+        font-size: 50px;
+    }
+}

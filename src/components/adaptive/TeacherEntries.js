@@ -8,7 +8,7 @@ export const TeacherEntries = () => {
 
   return (
     <div>
-      <h2 class="auth__title auth__title-entries">Maestros Registrados</h2>
+      <h2 className="auth__title auth__title-entries">Maestros Registrados</h2>
       <div className='teacher__entries'>
           {
               teachers.map(teacher  => (
