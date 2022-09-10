@@ -13,6 +13,11 @@ export const setRol = (rolCurrent) => ({
     payload: rolCurrent
 })
 
+export const setTestRelized = (testRelized) => ({
+    type: types.rolTest,
+    payload: testRelized
+})
+
 export const rolLogoutCleaning = () => ({
     type: types.rolLogoutCleaning
 })

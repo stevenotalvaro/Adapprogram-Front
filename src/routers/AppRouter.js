@@ -20,12 +20,10 @@ import { startLoadingGroups } from '../actions/groups';
 export const AppRouter = () => {
 
   const dispatch = useDispatch();
-  const {rolCurrent} = useSelector( state => state.rol );
   const [checking, setChecking] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   
   useEffect(() => {
-    console.log(rolCurrent)
     
     firebase.auth().onAuthStateChanged(async (user) => {
       if(user?.uid) {

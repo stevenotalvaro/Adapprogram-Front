@@ -37,7 +37,8 @@ export const startRegisterTeacher = (email, password, name, codigo, rol) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(async({user}) => {
             await user.updateProfile({displayName:name})
-            await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
+            // await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
+            await db.collection(`teachers/${user.uid}/information/`).add(newRolUser);
             await db.collection(`teachers/adap/users/`).add(newRolUser);
             dispatch(
                 login(user.uid, user.displayName, newRolUser)
@@ -50,25 +51,28 @@ export const startRegisterTeacher = (email, password, name, codigo, rol) => {
 
     }
 }
-export const startRegisterWithEmailPassword = (email, password, name, codigo, rol) => {
+export const startRegisterWithEmailPassword = (email, password, name, codigo, rol, styleLearning) => {
     return (dispatch) => {
         const newRolUser = {
             rol,
             codigo,
             name,
-            email
+            email,
+            styleLearning
         }
+
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async({user}) => {
                 
                 await user.updateProfile({displayName:name})
-                await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
+                // await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
+                await db.collection(`students/${user.uid}/information/`).add(newRolUser);
                 
                 const loadCodeTeacherString = await loadCodeTeacher(codigo);
                 await db.collection(`teachers/${loadCodeTeacherString}/students/`).add(newRolUser);
                 
                 dispatch(
-                    login(user.uid, user.displayName, newRolUser)
+                    login(user.uid, user.displayName, codigo, loadCodeTeacherString, styleLearning)
                 )
             })
             .catch( e => {
@@ -78,12 +82,14 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
     }
 }
 
-export const login = (uid, displayName, typeUser) => ({
+export const login = (uid, displayName, codigo, loadCodeTeacherString, styleLearning) => ({
     type: types.login,
     payload: {
         uid,
         displayName,
-        typeUser,
+        codigo,
+        loadCodeTeacherString,
+        styleLearning
     },
 })
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { activeGroup, setUpdateGroup, startNewGroup } from '../../../actions/groups';
+import { activeGroup, setUpdateGroup } from '../../../actions/groups';
 import { removeError, setError } from '../../../actions/ui';
 import { useForm } from '../../../hooks/useForm';
 
@@ -11,13 +11,6 @@ export const SessionsScreenUpdate = () => {
     const { active:group} = useSelector(state => state.groups)
     
     console.log(group)
-    
-    const generarID = () => {
-        const random = Math.random().toString(36).substr(2).toUpperCase();
-        const fecha = Date.now().toString(36);
-    
-        return (random + fecha).substr(1,5);
-    }
     
     const isFormValid = () => {
         if(carrera === "") {
@@ -30,11 +23,11 @@ export const SessionsScreenUpdate = () => {
             console.log(grupo.trim().length)
             dispatch(setError('Por favor inserta un grupo valido; Ej 50'))
             return false;
-        } else if (jornada != 'Diurna' && jornada != 'Nocturna') {
+        } else if (jornada !== 'Diurna' && jornada !== 'Nocturna') {
             console.log(jornada)
             dispatch(setError('Por faovr selecciona una jornada valida')) 
             return false;
-        } else if (codigo != codigo) {
+        } else if (codigo !== codigo) {
             dispatch(setError('No se puede modificar el codigo')) 
             return false;
         }

@@ -19,16 +19,22 @@ export const RegisterScreen = () => {
         password: '1234567',
         password2: '1234567',
         codigo: 1234,
-        rol: 'student'
+        rol: 'student',
+        styleLearning: {
+            visual: null,
+            autitivo: null,
+            kinestesico: null,
+            learningStyle: false
+        }
     })
 
-    const {name, email, password, password2, codigo, rol} = formValues
+    const {name, email, password, password2, codigo, rol, styleLearning} = formValues
 
     const handleRegister = async e => {
         e.preventDefault()
 
         if (await isFormValid()) {
-            dispatch(startRegisterWithEmailPassword(email, password, name, codigo, rol))
+            dispatch(startRegisterWithEmailPassword(email, password, name, codigo, rol, styleLearning))
         }
     }
 

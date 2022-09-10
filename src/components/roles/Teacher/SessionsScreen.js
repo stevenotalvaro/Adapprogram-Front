@@ -8,7 +8,7 @@ import { useForm } from '../../../hooks/useForm';
 export const SessionsScreen = () => {
     const dispatch = useDispatch();
     const { msgError } = useSelector(state => state.ui);
-    const { active:group, screenActive } = useSelector(state => state.groups)
+    const { active:group } = useSelector(state => state.groups)
     
     console.log(group)
     
@@ -37,7 +37,6 @@ export const SessionsScreen = () => {
         codigo: generedId,
         descripcion: ''
     })
-
     
     const {carrera, periodo, grupo, jornada, codigo, descripcion} = formValues
     

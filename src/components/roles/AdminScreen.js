@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import validator from 'validator'
-import { startRegisterTeacher, startRegisterWithEmailPassword } from '../../actions/auth'
+import { startRegisterTeacher} from '../../actions/auth'
 import { removeError, setError } from '../../actions/ui'
 
 import { useForm } from '../../hooks/useForm'
@@ -75,7 +75,7 @@ export const AdminScreen = () => {
 
                         <form onSubmit={handleRegister}>
                             <label 
-                                for="nombre" 
+                                htmlFor="nombre" 
                                 className="admin__box-label"
                             >
                                 Nombre del Maestro:
@@ -93,7 +93,7 @@ export const AdminScreen = () => {
                             />
 
                             <label 
-                                for="email" 
+                                htmlFor="email" 
                                 className="admin__box-label"
                             >
                                 Email del Maestro:
@@ -110,7 +110,7 @@ export const AdminScreen = () => {
                                 onChange={handleInputChange}
                             />
                             <label 
-                                for="password" 
+                                htmlFor="password" 
                                 className="admin__box-label"
                             >
                                 Password del Maestro:
@@ -127,7 +127,7 @@ export const AdminScreen = () => {
                             />
 
                             <label 
-                                for="password2" 
+                                htmlFor="password2" 
                                 className="admin__box-label"
                             >
                                 Confirma el password:

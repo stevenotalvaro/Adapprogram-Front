@@ -10,6 +10,7 @@ export const types = {
 
     rolLoad: '[Rol] Rol Load',
     rolLogoutCleaning: '[Rol] Logout Cleaning',
+    rolTest: '[Rol] Test Realizaded',
     
     teachersLoad: '[Teachers] Teacher Rol Load',
     teachersLogoutCleaning: '[Teachers] Logout Cleaning',

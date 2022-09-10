@@ -13,7 +13,7 @@ export const useForm = (initialState = {}) => {
             [target.name]: target.value,
         })
 
-        console.log(target.value)
+        // console.log(target.value)
     }
 
     return [values, handleInputChange, reset]
