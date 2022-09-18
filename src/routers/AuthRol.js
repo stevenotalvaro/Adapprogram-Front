@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { AdminScreen } from '../components/roles/AdminScreen';
 import { StudentScreen } from '../components/roles/StudentScreen';
+import { GroupScreen } from '../components/roles/Teacher/GroupScreen';
 import { TeacherScreen } from '../components/roles/TeacherScreen';
 
 export const AuthRol = () => {
@@ -21,12 +22,13 @@ if(rolCurrent === "") {
                             path="/rol/admin"
                             component={AdminScreen}
                         /> : 
-                        (rolCurrent === 'teacher' ? 
-                            <Route 
-                                exact
-                                path="/rol/teacher"
-                                component={TeacherScreen}
-                        /> :  
+                        (rolCurrent === 'teacher' ?
+                            <Switch>
+                                <Route exact path="/rol/teacher" component={TeacherScreen}/> 
+                                <Route exact path={"/rol/teacher/:groupId"} component={GroupScreen} />
+                            </Switch>
+                            :
+
                         <Route 
                             exact
                             path="/rol/student"

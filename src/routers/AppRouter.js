@@ -7,7 +7,7 @@ import {
   } from "react-router-dom";
 import { AuthRouter } from './AuthRouter';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../actions/auth';
+import { login, startLoadingInfo } from '../actions/auth';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { loadRol } from '../helpers/loadRol';
@@ -16,6 +16,7 @@ import { setRol } from '../actions/rol';
 import { loadTeachers } from '../helpers/loadTeachers';
 import { setTeachers } from '../actions/teachers';
 import { startLoadingGroups } from '../actions/groups';
+import { loadInfoStudent } from '../helpers/loadInfoStudent';
 
 export const AppRouter = () => {
 
@@ -26,11 +27,17 @@ export const AppRouter = () => {
   useEffect(() => {
     
     firebase.auth().onAuthStateChanged(async (user) => {
-      if(user?.uid) {
-        dispatch(login(user.uid, user.displayName))
-        setIsLoggedIn(true)
+      if(user && typeof(user) === 'object') {
 
+        console.log(user)
+        console.log(user)
+        
         const rol = await loadRol(user.uid)
+
+        rol === 'student' ? dispatch(startLoadingInfo(user.uid)) 
+                          : dispatch(login(user.uid, user.displayName))
+
+        setIsLoggedIn(true)
         
         dispatch(startLoadingGroups(user.uid))
         

@@ -6,6 +6,7 @@ import { rolLogoutCleaning, setRol } from './rol'
 import { loadRol } from '../helpers/loadRol'
 import { groupLogout } from './groups'
 import { loadCodeTeacher } from '../helpers/loadCodeTeacher'
+import { loadInfoStudent } from '../helpers/loadInfoStudent'
 
 
 export const startLoginEmailPassword = (email, password) => {
@@ -63,13 +64,14 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async({user}) => {
-                
+                const loadCodeTeacherString = await loadCodeTeacher(codigo);
+                newRolUser.loadCodeTeacherString = loadCodeTeacherString;
+
                 await user.updateProfile({displayName:name})
                 // await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
                 await db.collection(`students/${user.uid}/information/`).add(newRolUser);
                 
-                const loadCodeTeacherString = await loadCodeTeacher(codigo);
-                await db.collection(`teachers/${loadCodeTeacherString}/students/`).add(newRolUser);
+                await db.doc(`teachers/${loadCodeTeacherString}/students/${user.uid}/`).set(newRolUser);
                 
                 dispatch(
                     login(user.uid, user.displayName, codigo, loadCodeTeacherString, styleLearning)
@@ -82,11 +84,36 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
     }
 }
 
-export const login = (uid, displayName, codigo, loadCodeTeacherString, styleLearning) => ({
+export const setUpdateStyleLearning = (info) => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth;
+        console.log(info)
+
+        const { name, codigo, loadCodeTeacherString, styleLearning, id } = info
+
+        const studentToFireStore = {...info};
+        delete studentToFireStore.id
+
+        // await db.doc(`teachers/${loadCodeTeacherString}/students/${info.id}`).update(studentToFireStore);
+        await db.doc(`students/${uid}/information/${info.id}`).update(studentToFireStore);
+        await db.doc(`teachers/${loadCodeTeacherString}/students/${uid}/`).update(studentToFireStore);
+        dispatch(login(uid, name, id, codigo, loadCodeTeacherString, styleLearning));
+    }
+}
+
+export const startLoadingInfo = (uid) => {
+    return async (dispatch) => {
+        const { id, name ,codigo, loadCodeTeacherString, styleLearning} = await loadInfoStudent(uid)
+        dispatch(login(uid, name, id, codigo, loadCodeTeacherString, styleLearning))
+    }
+}
+
+export const login = (uid, displayName, id, codigo, loadCodeTeacherString, styleLearning) => ({
     type: types.login,
     payload: {
         uid,
         displayName,
+        id,
         codigo,
         loadCodeTeacherString,
         styleLearning

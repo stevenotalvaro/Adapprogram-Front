@@ -24,7 +24,7 @@ export const RegisterScreen = () => {
             visual: null,
             autitivo: null,
             kinestesico: null,
-            learningStyle: false
+            learningStyle: ''
         }
     })
 
