@@ -127,6 +127,10 @@ export const RegisterScreen = () => {
             </form>
 
             <Link className='link' to='/auth/login'>
+                ¿Olvidaste tu contraseña?.
+            </Link>
+            
+            <Link className='link mt-1' to='/auth/login'>
                 ¿Ya tienes una cuenta? Inicia Sesión.
             </Link>
         </>

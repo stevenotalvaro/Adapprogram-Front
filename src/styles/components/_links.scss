@@ -1,6 +1,10 @@
 .link {
     text-decoration: none;
     color: black;
+    display: block;
+    font-family: sans-serif;
+    font-size: 17px;
+    text-align: end;
 
     &:hover {
         text-decoration: underline;

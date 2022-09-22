@@ -84,6 +84,10 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
     }
 }
 
+export const startSendEmailReseat = ( email ) => {
+    return firebase.auth().sendPasswordResetEmail(email)
+}
+
 export const setUpdateStyleLearning = (info) => {
     return async (dispatch, getState) => {
         const { uid } = getState().auth;

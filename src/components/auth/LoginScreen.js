@@ -53,6 +53,10 @@ export const LoginScreen = () => {
             <Link className='link' to='/auth/register'>
                 Crear nueva cuenta
             </Link>
+
+            <Link className='link mt-1' to='/auth/reset'>
+                ¿Olvidaste tu contraseña? Recuperala.
+            </Link>
         </>
     )
 }
