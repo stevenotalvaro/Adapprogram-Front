@@ -5,15 +5,20 @@ import { useSelector } from 'react-redux';
 
 export const PublicRoute = ({
     isAuthenticated,
+    isVerified,
     component: Component,
     ...rest
 }) => {
     const {rolCurrent} = useSelector( state => state.rol );
+    console.log("public")
+    console.log(isVerified, isAuthenticated)
     return (
         <Route
             {...rest}
             component={props =>
-                isAuthenticated ? <Redirect to={`/rol/${rolCurrent}`} /> : <Component {...props} />
+                isAuthenticated ? isVerified ? <Redirect to={`/rol/${rolCurrent}`} /> 
+                                             : <Redirect to={'/rol/verification'} /> 
+                                : <Component {...props} />
             }
         />
     )

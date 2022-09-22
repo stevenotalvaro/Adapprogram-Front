@@ -41,10 +41,12 @@ export const startRegisterTeacher = (email, password, name, codigo, rol) => {
             // await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
             await db.collection(`teachers/${user.uid}/information/`).add(newRolUser);
             await db.collection(`teachers/adap/users/`).add(newRolUser);
+
             dispatch(
                 login(user.uid, user.displayName, newRolUser)
             )
         })
+        .then(() => sendCheckEmail())
         .catch( e => {
             console.log(e)
             Swal.fire('Error', e.message, 'error')
@@ -77,11 +79,24 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
                     login(user.uid, user.displayName, codigo, loadCodeTeacherString, styleLearning)
                 )
             })
+            .then(() => sendCheckEmail())
             .catch( e => {
                 console.log(e)
                 Swal.fire('Error', e.message, 'error')
             })        
     }
+}
+
+export const sendCheckEmail = () => {
+    const user = firebase.auth().currentUser;
+
+    user.sendEmailVerification()
+    .then(()=> {
+        Swal.fire("Enviado", "Verifica tu bandeja de entrada o spam", "success")
+    })
+    .catch((e)=> {
+        Swal.fire("Error", e.message, "error")
+    })
 }
 
 export const startSendEmailReseat = ( email ) => {

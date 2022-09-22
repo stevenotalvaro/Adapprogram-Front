@@ -16,25 +16,24 @@ import { setRol } from '../actions/rol';
 import { loadTeachers } from '../helpers/loadTeachers';
 import { setTeachers } from '../actions/teachers';
 import { startLoadingGroups } from '../actions/groups';
+import { AuthVerified } from './AuthVerified';
 
 export const AppRouter = () => {
 
   const dispatch = useDispatch();
   const [checking, setChecking] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isVerified, setIsVerified] = useState(false)
   
   useEffect(() => {
     
     firebase.auth().onAuthStateChanged(async (user) => {
-      if(user && typeof(user) === 'object') {
-
+      if ( user ) {
         const rol = await loadRol(user.uid)
 
         rol === 'student' ? dispatch(startLoadingInfo(user.uid)) 
                           : dispatch(login(user.uid, user.displayName))
 
-        setIsLoggedIn(true)
-        
         dispatch(startLoadingGroups(user.uid))
         
         if (rol === 'admin') {
@@ -42,12 +41,14 @@ export const AppRouter = () => {
           dispatch(setTeachers(teachers))
         }
         dispatch(setRol(rol))
+        setIsLoggedIn(true)
+        setIsVerified(user.emailVerified)
       }else {
         setIsLoggedIn(false)
       }
       setChecking(false)
     })
-  }, [dispatch, setChecking,  setIsLoggedIn, loadTeachers])
+  }, [dispatch, setChecking,  setIsLoggedIn, loadTeachers, setIsVerified])
 
   if(checking) {
     return (<h1>Wait...</h1>)
@@ -59,14 +60,17 @@ export const AppRouter = () => {
             <Switch>
                 <PublicRoute
                     isAuthenticated={isLoggedIn}
+                    isVerified={isVerified}
                     path="/auth"
                     component={AuthRouter}
                 />
 
                 <PrivateRoute
+                    isVerified={isVerified}
                     isAuthenticated={isLoggedIn}
                     path="/rol"
                     component={AuthRol}
+                    component2={AuthVerified}
                 />
 
                 <Redirect to="/auth/login" />
