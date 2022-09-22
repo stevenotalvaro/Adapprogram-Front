@@ -5,6 +5,7 @@ import { AdminScreen } from '../components/roles/AdminScreen';
 import { StudentScreen } from '../components/roles/StudentScreen';
 import { GroupScreen } from '../components/roles/Teacher/GroupScreen';
 import { TeacherScreen } from '../components/roles/TeacherScreen';
+import { Sidebar } from '../components/adaptive/Sidebar'
 
 export const AuthRol = () => {
 const {rolCurrent} = useSelector( state => state.rol );
@@ -13,6 +14,7 @@ if(rolCurrent === "") {
 }
   return (
     <div>
+        <Sidebar />
         <Switch>
             {
                 (

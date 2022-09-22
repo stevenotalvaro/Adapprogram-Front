@@ -3,7 +3,8 @@ import { types } from "../types/types";
 const initalState = {
     groups: [],
     active: null,
-    screenActive: null
+    screenActive: null,
+    groupsStudents: null
 }
 
 export const grupsReducer = (state=initalState, action ) =>{
@@ -44,16 +45,29 @@ export const grupsReducer = (state=initalState, action ) =>{
                         : group
                 )
             }
+            
+        case types.goupsStudents:
+            return {
+                ...state,
+                groupsStudents: action.payload 
+            }
 
+        case types.goupsCleanStudents:
+            return {
+                ...state,
+                groupsStudents: null
+            }
+                
         case types.groupsLoadoutCleaning:
             return {
                 ...state,
                 groups: [],
                 active: null,
-                screenActive: null
+                screenActive: null,
+                groupsStudents: null
 
             }
-    
+
         default:
             return state;
     }

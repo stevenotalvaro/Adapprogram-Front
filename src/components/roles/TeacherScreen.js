@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavBarTeacher } from './Teacher/NavBarTeacher'
 import { NothingSelected } from './Teacher/NothingSelected'
 import { SessionsScreen } from './Teacher/SessionsScreen'
 import { SessionsScreenUpdate } from './Teacher/SessionsScreenUpdate'
 import { Sidebar } from './Teacher/Sidebar'
 import { useSelector, useDispatch } from 'react-redux'
-import { activeGroup, setActiveChange } from '../../actions/groups'
+import { activeGroup, cleanStudents, setActiveChange } from '../../actions/groups'
 import { removeError } from '../../actions/ui'
 
 export const TeacherScreen = () => {
     const dispatch = useDispatch();
     const { screenActive } = useSelector( state => state.groups );
+
+    useEffect(() => {
+        dispatch(cleanStudents())
+    }, [])
+    
 
     const handleActiveGroup = () =>{
         dispatch(activeGroup())

@@ -20,6 +20,8 @@ export const types = {
     groupsLoad: '[Groups] Load groups',
     groupsUpdated: '[Groups] Update group saves',
     groupsLoadoutCleaning: '[Groups] Logout Cleaning',
+    goupsStudents: '[Groups] Load groups students',
+    goupsCleanStudents: '[Groups] Clean groups students',
 
     groupsScreenChange: '[Groups] Change'
 }

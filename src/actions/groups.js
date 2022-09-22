@@ -1,11 +1,12 @@
 import Swal from "sweetalert2";
 
 import { db } from "../firebase/firebase-config";
+import { getStudentsGroups } from "../helpers/getStudentsGroups";
 import { loadGroups } from "../helpers/loadGroups";
 import { types } from '../types/types'
 
-export const startNewGroup = (carrera, periodo, grupo, jornada, codigo, descripcion) => {
-    return async(dispatch, getState) =>{
+export const startNewGroup = ( carrera, periodo, grupo, jornada, codigo, descripcion ) => {
+    return async( dispatch, getState ) =>{
         const { uid } = getState().auth;
         const newGroup = {
             carrera,
@@ -31,14 +32,14 @@ export const startNewGroup = (carrera, periodo, grupo, jornada, codigo, descripc
     }
 }
 
-export const addGroupNew = (id, group) => ({
+export const addGroupNew = ( id, group ) => ({
     type: types.groupsAddNew,
     payload: {
         id, ...group
     }
 })
 
-export const activeGroup = (id, group) => ({
+export const activeGroup = ( id, group ) => ({
     type: types.groupsActive,
     payload: {
         id,
@@ -53,7 +54,7 @@ export const startLoadingGroups = ( uid ) => {
     }
 }
 
-export const setGroups = (group) => ({
+export const setGroups = ( group ) => ({
     type: types.groupsLoad,
     payload: group
 })
@@ -63,7 +64,7 @@ export const setActiveChange = (screen) => ({
     payload: screen
 })
 
-export const setUpdateGroup = (group) => {
+export const setUpdateGroup = ( group ) => {
     return async( dispatch, getState ) => {
         const { uid } = getState().auth;
         
@@ -77,7 +78,7 @@ export const setUpdateGroup = (group) => {
     }
 }
 
-export const refreshGroup = (id, group) => ({
+export const refreshGroup = ( id, group ) => ({
     type: types.groupsUpdated,
     payload: {
         id,
@@ -86,6 +87,24 @@ export const refreshGroup = (id, group) => ({
             ...group
         }
     }
+})
+
+export const startGetGroupsStudents = ( groupId ) => {
+    return async ( dispatch, getState ) => {
+        const { uid } = getState().auth;
+        const group = await getStudentsGroups(uid, groupId)
+        console.log(group)
+        dispatch(setGroupsStudents(group))
+    }
+}
+
+export const setGroupsStudents = ( groupsStudents ) => ({
+    type: types.goupsStudents,
+    payload: groupsStudents
+})
+
+export const cleanStudents = () => ({
+    type: types.goupsCleanStudents
 })
 
 export const groupLogout = () => ({

@@ -1,0 +1,45 @@
+.number-students {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-transform: uppercase;
+    margin-top: 15px;
+
+    span {
+        font-size: 1.875rem;;
+
+    }
+    
+    span:nth-child(2) {
+        font-weight: 900;
+    }
+}
+
+.student-entries {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .student-entry {
+        max-width: 400px;
+        width: 100%;
+        font-size: 1.3rem;
+        border: 1px solid;
+        color: $dark-grey;
+        margin: 15px;
+        padding: 5px;
+        border-radius: 10px;
+        padding-left: 20px;
+
+        p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        p:not(:first-child) {
+            margin-top: 10px;
+        }
+    }
+}
