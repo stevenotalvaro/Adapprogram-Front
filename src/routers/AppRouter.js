@@ -17,6 +17,7 @@ import { loadTeachers } from '../helpers/loadTeachers';
 import { setTeachers } from '../actions/teachers';
 import { startLoadingGroups } from '../actions/groups';
 import { AuthVerified } from './AuthVerified';
+import { Backdrop, CircularProgress } from '@material-ui/core';
 
 export const AppRouter = () => {
 
@@ -28,11 +29,13 @@ export const AppRouter = () => {
   useEffect(() => {
     
     firebase.auth().onAuthStateChanged(async (user) => {
+      console.log(user)
       if ( user ) {
         const rol = await loadRol(user.uid)
+        console.log(user.email)
 
         rol === 'student' ? dispatch(startLoadingInfo(user.uid)) 
-                          : dispatch(login(user.uid, user.displayName))
+                          : dispatch(login(user.uid, user.displayName, user.email))
 
         dispatch(startLoadingGroups(user.uid))
         
@@ -41,8 +44,8 @@ export const AppRouter = () => {
           dispatch(setTeachers(teachers))
         }
         dispatch(setRol(rol))
-        setIsLoggedIn(true)
         setIsVerified(user.emailVerified)
+        setIsLoggedIn(true)
       }else {
         setIsLoggedIn(false)
       }
@@ -51,8 +54,11 @@ export const AppRouter = () => {
   }, [dispatch, setChecking,  setIsLoggedIn, loadTeachers, setIsVerified])
 
   if(checking) {
-    return (<h1>Wait...</h1>)
-  }
+    return (
+        <Backdrop open={true} >
+          <CircularProgress color="primary" />
+        </Backdrop>)
+    }
 
   return (
     <Router>

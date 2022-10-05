@@ -6,11 +6,16 @@ import { StudentScreen } from '../components/roles/StudentScreen';
 import { GroupScreen } from '../components/roles/Teacher/GroupScreen';
 import { TeacherScreen } from '../components/roles/TeacherScreen';
 import { Sidebar } from '../components/adaptive/Sidebar'
+import { Reports } from '../components/roles/Teacher/group-student/Reports';
+import { Backdrop, CircularProgress } from '@material-ui/core';
 
 export const AuthRol = () => {
 const {rolCurrent} = useSelector( state => state.rol );
 if(rolCurrent === "") {
-    return <h1>Wait!...</h1>
+    return (
+        <Backdrop open={true} >
+          <CircularProgress color="primary" />
+        </Backdrop>)
 }
   return (
     <div>
@@ -27,6 +32,7 @@ if(rolCurrent === "") {
                         (rolCurrent === 'teacher' ?
                             <Switch>
                                 <Route exact path="/rol/teacher" component={TeacherScreen}/> 
+                                <Route exact path={"/rol/teacher/reports"} component={Reports} />
                                 <Route exact path={"/rol/teacher/:groupId"} component={GroupScreen} />
                             </Switch>
                             :

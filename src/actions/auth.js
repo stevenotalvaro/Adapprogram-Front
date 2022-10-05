@@ -15,7 +15,7 @@ export const startLoginEmailPassword = (email, password) => {
         dispatch(startLoading())
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(async ({user}) => {
-                dispatch(login(user.uid, user.displayName))
+                dispatch(login(user.uid, user.displayName, user.email))
                 const rol = await loadRol(user.uid)
                 dispatch(setRol(rol))
                 dispatch(finishLoading())
@@ -43,7 +43,7 @@ export const startRegisterTeacher = (email, password, name, codigo, rol) => {
             await db.collection(`teachers/adap/users/`).add(newRolUser);
 
             dispatch(
-                login(user.uid, user.displayName, newRolUser)
+                login(user.uid, user.displayName, email, newRolUser)
             )
         })
         .then(() => sendCheckEmail())
@@ -76,7 +76,7 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
                 await db.doc(`teachers/${loadCodeTeacherString}/students/${user.uid}/`).set(newRolUser);
                 
                 dispatch(
-                    login(user.uid, user.displayName, codigo, loadCodeTeacherString, styleLearning)
+                    login(user.uid, user.displayName, email, codigo, loadCodeTeacherString, styleLearning)
                 )
             })
             .then(() => sendCheckEmail())
@@ -103,35 +103,51 @@ export const startSendEmailReseat = ( email ) => {
     return firebase.auth().sendPasswordResetEmail(email)
 }
 
-export const setUpdateStyleLearning = (info) => {
+export const setUpdateStyleLearning = (name, codigo, email, loadCodeTeacherString, visual, auditivo, kinestesico , learningStyle, id) => {
     return async (dispatch, getState) => {
+        console.log('start')
         const { uid } = getState().auth;
-        console.log(info)
 
-        const { name, codigo, loadCodeTeacherString, styleLearning, id } = info
+        const info = {
+            name, 
+            codigo, 
+            email, 
+            loadCodeTeacherString, 
+            styleLearning : {
+                visual,
+                auditivo,
+                kinestesico,
+                learningStyle
+            }, 
+            id
+        }
+
+        const {styleLearning} = info;
 
         const studentToFireStore = {...info};
         delete studentToFireStore.id
 
-        // await db.doc(`teachers/${loadCodeTeacherString}/students/${info.id}`).update(studentToFireStore);
         await db.doc(`students/${uid}/information/${info.id}`).update(studentToFireStore);
         await db.doc(`teachers/${loadCodeTeacherString}/students/${uid}/`).update(studentToFireStore);
-        dispatch(login(uid, name, id, codigo, loadCodeTeacherString, styleLearning));
+        console.log("hello")
+        dispatch(login(uid, name, email, id, codigo, loadCodeTeacherString, styleLearning));
+        window.location.reload()
     }
 }
 
 export const startLoadingInfo = (uid) => {
     return async (dispatch) => {
-        const { id, name ,codigo, loadCodeTeacherString, styleLearning} = await loadInfoStudent(uid)
-        dispatch(login(uid, name, id, codigo, loadCodeTeacherString, styleLearning))
+        const { id, name, email, codigo, loadCodeTeacherString, styleLearning} = await loadInfoStudent(uid)
+        dispatch(login(uid, name, email, id, codigo, loadCodeTeacherString, styleLearning))
     }
 }
 
-export const login = (uid, displayName, id, codigo, loadCodeTeacherString, styleLearning) => ({
+export const login = (uid, displayName, email, id, codigo, loadCodeTeacherString, styleLearning) => ({
     type: types.login,
     payload: {
         uid,
         displayName,
+        email,
         id,
         codigo,
         loadCodeTeacherString,

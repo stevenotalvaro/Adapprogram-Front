@@ -49,7 +49,7 @@
 ///// Teacher
 .teacher__main-content {
     display: flex;
-    height: calc(100vh - 60px);
+    height: calc(80vh - 60px);
 
     .adaptive__sidebar-container {
         width: 25%;
@@ -58,6 +58,20 @@
         color: $dark-grey;
         display: flex;
         flex-direction: column;
+
+        .adaptive__sidebar-reports {
+            text-decoration: none;
+            position: fixed;
+            bottom: 30px;
+            left: 4%;
+            width: 200px;
+            background: $dark-grey;
+            color: #fdfdfd;
+            padding: 20px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 25px;
+        }
     }
 
     main {

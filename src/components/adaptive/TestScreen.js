@@ -8,7 +8,7 @@ import { useForm } from '../../hooks/useForm'
 export const TestScreen = () => {
 
     const dispatch = useDispatch();
-    const { name, codigo, id, loadCodeTeacherString, styleLearning} = useSelector( state => state.auth );
+    const { name, codigo, email, id, loadCodeTeacherString, styleLearning} = useSelector( state => state.auth );
     
     const [visual, setVisual] = useState(0);
     const [auditivo, setAuditivo] = useState(0);
@@ -17,18 +17,19 @@ export const TestScreen = () => {
     const [validation, setValidation] = useState(false)
     console.log(name, codigo, loadCodeTeacherString, styleLearning)
 
-    const updateInfoStudent = {
-        name,
-        codigo,
-        loadCodeTeacherString,
-        id,
-        styleLearning: {
-            visual,
-            auditivo,
-            kinestesico,
-            learningStyle
-        }
-    }
+    // const updateInfoStudent = {
+    //     name,
+    //     codigo,
+    //     email,
+    //     loadCodeTeacherString,
+    //     id,
+    //     styleLearning: {
+    //         visual,
+    //         auditivo,
+    //         kinestesico,
+    //         learningStyle
+    //     }
+    // }
 
     const [formValues, handleInputChange] = useForm({
         op1: 0,
@@ -86,7 +87,10 @@ export const TestScreen = () => {
     // }, [learningStyle])
 
     if (validation) {
-        return dispatch(setUpdateStyleLearning(updateInfoStudent));
+        // const {name, codigo, email, loadCodeTeacherString, styleLearning, id} = updateInfoStudent
+        console.log(name, codigo, email, loadCodeTeacherString, visual, auditivo, kinestesico , learningStyle, id)
+
+        return dispatch(setUpdateStyleLearning(name, codigo, email, loadCodeTeacherString, visual, auditivo, kinestesico , learningStyle, id));
     }
     
     const handleValues = (e) => {

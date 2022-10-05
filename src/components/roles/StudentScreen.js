@@ -8,6 +8,8 @@ export const StudentScreen = () => {
   const [checking, setChecking] = useState(true)
   const  styleLearning  = useSelector( state => state.auth.styleLearning );
   const  { uid }  = useSelector( state => state.auth );
+
+  console.log(uid)
   
   return (
     <>
