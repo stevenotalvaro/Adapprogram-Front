@@ -1,5 +1,5 @@
 import { CircularProgress } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { fetchSinToken } from '../../../helpers/fetch'
 import { useFetch } from '../../../hooks/useFetch'
@@ -18,6 +18,18 @@ export const QuestionsCourse = ({url}) => {
     const [answerSix, setAnswerSix] = useState('')
     const [answerSeven, setAnswerSeven] = useState('')
     const [answerEight, setAnswerEight] = useState('')
+
+    useEffect(() => {
+        setAnswerOne('')
+        setAnswerTwo('')
+        setAnswerThree('')
+        setAnswerFour('')
+        setAnswerFive('')
+        setAnswerSix('')
+        setAnswerSeven('')
+        setAnswerEight('')
+    }, [url])
+    
     
     const [formValues, handleInputChange] = useForm({
         op1: 0,
