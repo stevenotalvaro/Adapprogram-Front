@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useFetch = ( urlPath, data, method = 'GET', endpoint = '') => {
-	const url = `${urlPath}/${endpoint}`;
+export const useFetch = ( urlPath, data, method = 'GET') => {
+	const url = `${urlPath}`;
 
 	const isMounted = useRef(true);
 	const [state, setState] = useState({

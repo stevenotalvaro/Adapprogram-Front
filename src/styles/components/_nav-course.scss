@@ -1,0 +1,117 @@
+.nav__container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $baground-gray;
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.nav__title {
+    margin: 15px auto;
+    width: 90%;
+    box-shadow: $box-shodow-black;
+    border-radius: 5px;
+    background-color: $white;
+}
+
+.nav__title--text {
+    padding: 10px;
+
+}
+
+.list {
+    border-radius:  0 16px 16px 0;
+    background-color: $baground-gray-2;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    height: calc(100vh - 80px);
+    width: 320px;
+    overflow-y: scroll;
+}
+
+.list__item {
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    // overflow: hidden;
+}
+
+.list__button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.list__arrow {
+    margin-left: auto;
+    width: 24px;
+    height: 24px;
+    transition: transform .3s;
+}
+
+.arrow .list__arrow {
+    transform: rotate(90deg);
+}
+
+.nav__link {
+    color: #303440;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+}
+
+.list__show {
+    border-left: 2px solid #303440;
+    list-style: none;
+    margin-left: auto;
+    margin-top: 10px;
+    transition: height .4s;
+    padding-left: 0;
+    width: 80%;
+    height: 0;
+    visibility: hidden;
+}
+
+.list__inside {
+    &:hover {
+        background-color: $baground-gray-hover;
+    }
+}
+
+.nav__link--inside {
+    border-radius: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.list__item--click {
+    cursor: pointer;
+}
+
+.btn__list {
+    background-color: unset;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.btn__list.list__button.list__button--click {
+    border-bottom: 1px solid $baground-gray-hover;
+}
+
+.btn__list.list__button.list__button--click.arrow {
+    border-bottom: 1px solid $dark-grey;
+}
+
+.btn__list.nav__link.nav__link--inside {
+    width: 100%;
+}
+

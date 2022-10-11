@@ -38,7 +38,6 @@ export const startRegisterTeacher = (email, password, name, codigo, rol) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(async({user}) => {
             await user.updateProfile({displayName:name})
-            // await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
             await db.collection(`teachers/${user.uid}/information/`).add(newRolUser);
             await db.collection(`teachers/adap/users/`).add(newRolUser);
 

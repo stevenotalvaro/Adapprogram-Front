@@ -19,7 +19,6 @@ if(rolCurrent === "") {
 }
   return (
     <div>
-        <Sidebar />
         <Switch>
             {
                 (

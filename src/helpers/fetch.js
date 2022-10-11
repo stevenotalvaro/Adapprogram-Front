@@ -1,7 +1,7 @@
 
-export const fetchSinToken = ( urlPath, data, method = 'GET', endpoint = '') => {
+export const fetchSinToken = ( urlPath, data, method = 'GET') => {
 
-    const url = `${urlPath}/${endpoint}`;
+    const url = urlPath;
 
     if ( method === 'GET' ) {
         return fetch( url );
@@ -12,7 +12,11 @@ export const fetchSinToken = ( urlPath, data, method = 'GET', endpoint = '') => 
                 'Content-type': 'application/json',
             },
             body: JSON.stringify( data )
-        });
+        })
+		.then(resp => resp.json())
+		.then(data => {
+				return data
+		});
     }
 }
 

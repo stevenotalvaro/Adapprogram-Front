@@ -1,7 +1,10 @@
 import React from 'react'
+import { NavCourse } from './NavCourse'
 
 export const StudentCourse = () => {
   return (
-    <div>StudentCourse</div>
+    <div className='nav__container'>
+      <NavCourse />
+    </div>
   )
 }
