@@ -136,12 +136,12 @@ export const setUpdateStyleLearning = (name, codigo, email, loadCodeTeacherStrin
 
 export const startLoadingInfo = (uid) => {
     return async (dispatch) => {
-        const { id, name, email, codigo, loadCodeTeacherString, styleLearning} = await loadInfoStudent(uid)
-        dispatch(login(uid, name, email, id, codigo, loadCodeTeacherString, styleLearning))
+        const { id, name, email, codigo, loadCodeTeacherString, styleLearning, course} = await loadInfoStudent(uid)
+        dispatch(login(uid, name, email, id, codigo, loadCodeTeacherString, styleLearning, course))
     }
 }
 
-export const login = (uid, displayName, email, id, codigo, loadCodeTeacherString, styleLearning) => ({
+export const login = (uid, displayName, email, id, codigo, loadCodeTeacherString, styleLearning, course) => ({
     type: types.login,
     payload: {
         uid,
@@ -150,7 +150,8 @@ export const login = (uid, displayName, email, id, codigo, loadCodeTeacherString
         id,
         codigo,
         loadCodeTeacherString,
-        styleLearning
+        styleLearning,
+        course
     },
 })
 

@@ -1,20 +1,20 @@
 import { CircularProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player';
+import { useSelector } from 'react-redux';
 import { useFetch } from '../../../hooks/useFetch';
 import arrow from '../../../images/arrow.png'
 import { QuestionsCourse } from './QuestionsCourse';
 
 export const NavCourse = () => {
 
-    const {loading, data} = useFetch(`http://127.0.0.1:5000/video/list/visual`)
-    const [urlPlayer, setUrlPlayer] = useState('')
-    const [urlQuestion, setUrlQuestion] = useState('')
-    const [viewSelected, setViewSelected] = useState('')
-    console.log(loading, data, urlPlayer)
+    const { learningStyle } = useSelector( state => state.auth.styleLearning );
+    const { loading, data } = useFetch(`http://127.0.0.1:5000/video/list/${learningStyle}`)
+    const [ urlPlayer, setUrlPlayer ] = useState('')
+    const [ urlQuestion, setUrlQuestion ] = useState('')
+    const [ viewSelected, setViewSelected ] = useState('')
 
     let arrayUrlQuestions = ['question/variables', 'question/estructurasdecision', 'question/estructurasiterativa', 'question/funcionesiterativas']
-
 
     useEffect(() => {
       
@@ -52,10 +52,6 @@ export const NavCourse = () => {
       
     }, [loading])
     
-    
-        
-    
-
   return (
     <nav className='nav'>
         {
@@ -72,7 +68,7 @@ export const NavCourse = () => {
                         
                         {
                             data.map((son, i)=> {
-                                {console.log(son.temas)}
+                                {console.log(son)}
                                 return (<li key={i} className='list__item list__item--click'>
                                     <div className={`btn__list list__button list__button--click`}>
                                         <button className='btn__list nav__link'>{son.temas}</button>
@@ -82,6 +78,7 @@ export const NavCourse = () => {
 
                                         {
                                             son.contenido.map((sonconte, i) => {
+                                                console.log(sonconte)
                                                 return (<li key={i} className='list__inside'>
                                                     <button onClick={() => {setUrlPlayer(sonconte.url); setViewSelected(true)}} className='btn__list nav__link nav__link--inside'>{sonconte.titulo}</button>
                                                 </li>)
@@ -104,8 +101,7 @@ export const NavCourse = () => {
                     
         }
 
-
-       { 
+        { 
             (urlPlayer && viewSelected) &&
                 <div className='player'>
                     <ReactPlayer 

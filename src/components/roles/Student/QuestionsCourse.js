@@ -28,10 +28,22 @@ export const QuestionsCourse = ({url}) => {
         setAnswerSix('')
         setAnswerSeven('')
         setAnswerEight('')
+
+        reset({
+            op1: 0,
+            op2: 0,
+            op3: 0,
+            op4: 0,
+            op5: 0,
+            op6: 0,
+            op7: 0,
+            op8: 0,
+        })
+        
     }, [url])
     
     
-    const [formValues, handleInputChange] = useForm({
+    const [formValues, handleInputChange, reset] = useForm({
         op1: 0,
         op2: 0,
         op3: 0,
@@ -47,57 +59,95 @@ export const QuestionsCourse = ({url}) => {
     const handleSendQuestions = async (e) => {
         e.preventDefault();
 
+        const dataRes = [
+            {
+                respuesta: +op1
+            },
+            {
+                respuesta: +op2
+            },
+            {
+                respuesta: +op3
+            },
+            {
+                respuesta: +op4
+            },
+            {
+                respuesta: +op5
+            },
+            {
+                respuesta: +op6
+            },
+            {
+                respuesta: +op7
+            },
+            {
+                respuesta: +op8
+            },
+        ]
 
         if(url.includes('/variables')) {
             console.log(+op1, +op2, +op3)
-            console.log(isValid())
-            const dataRes = [
-                {
-                    respuesta: +op1
-                },
-                {
-                    respuesta: +op2
-                },
-                {
-                    respuesta: +op3
-                },
-                {
-                    respuesta: +op4
-                },
-                {
-                    respuesta: +op5
-                },
-                {
-                    respuesta: +op6
-                },
-                {
-                    respuesta: +op7
-                },
-                {
-                    respuesta: +op8
-                },
-            ]
             if(isValid()) {
                 setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/variables/1', dataRes[0], 'POST')))
                 setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/variables/2', dataRes[1], 'POST')))
                 setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/variables/3', dataRes[2], 'POST')))
-
-                const Toast = Swal.mixin({
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-                  
-                  Toast.fire({
-                    icon: 'success',
-                    title: 'Bien hecho, Revisa tus respuestas',
-                  })
             }
+        }
+
+        if(url.includes('/estructurasdecision')) {
+            console.log(+op1, +op2, +op3)
+            if(isValid()) {
+                setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/1', dataRes[0], 'POST')))
+                setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/2', dataRes[1], 'POST')))
+                setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/3', dataRes[2], 'POST')))
+                setAnswerFour((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/4', dataRes[3], 'POST')))
+                setAnswerFive((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/5', dataRes[4], 'POST')))
+                setAnswerSix((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/6', dataRes[5], 'POST')))
+                setAnswerSeven((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/7', dataRes[6], 'POST')))
+                setAnswerEight((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/8', dataRes[7], 'POST')))
+            }
+        }
+
+        if(url.includes('/estructurasiterativa')) {
+            console.log(+op1, +op2, +op3)
+            if(isValid()) {
+                setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/1', dataRes[0], 'POST')))
+                setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/2', dataRes[1], 'POST')))
+                setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/3', dataRes[2], 'POST')))
+                setAnswerFour((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/4', dataRes[3], 'POST')))
+                setAnswerFive((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/5', dataRes[4], 'POST')))
+                setAnswerSix((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/6', dataRes[5], 'POST')))
+                setAnswerSeven((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/7', dataRes[6], 'POST')))
+            }
+        }
+
+        if(url.includes('/funcionesiterativas')) {
+            console.log(+op1, +op2, +op3)
+            if(isValid()) {
+                setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/1', dataRes[0], 'POST')))
+                setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/2', dataRes[1], 'POST')))
+                setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/3', dataRes[3], 'POST')))
+                setAnswerFour((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/4', dataRes[4], 'POST')))
+            }
+        }
+
+        if(isValid()) {
+            const Toast = Swal.mixin({
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Bien hecho, Revisa tus respuestas',
+              })
         }
 
     }
@@ -108,17 +158,38 @@ export const QuestionsCourse = ({url}) => {
                 console.log('true')
                 return true
             }
-
-            Swal.fire({
-                position: 'top-end',
-                icon: 'warning',
-                title: 'Debes seleccioanar todas las respuestas',
-                showConfirmButton: false,
-                timer: 2500
-            })
-            return false
-            
         }
+
+        if(url.includes('/estructurasdecision')) {
+            if((+op1 &&  +op2 && +op3 && +op4 &&  +op5 && +op6 && +op7 &&  +op8) >= 1 && (+op1 &&  +op2 && +op3 && +op4 &&  +op5 && +op6 && +op7 &&  +op8) <= 5 ) {
+                console.log('TRUE decision')
+                return true
+            }
+        }
+
+        if(url.includes('/estructurasiterativa')) {
+            if((+op1 &&  +op2 && +op3 && +op4 &&  +op5 && +op6 && +op7) >= 1 && (+op1 &&  +op2 && +op3 && +op4 &&  +op5 && +op6 && +op7) <= 5 ) {
+                console.log('TRUE iterativa')
+                return true
+            }
+        }
+
+        if(url.includes('/funcionesiterativas')) {
+            if((+op1 &&  +op2 && +op3 && +op4 ) >= 1 && (+op1 &&  +op2 && +op3 && +op4 ) <= 5 ) {
+                console.log('TRUE func iterativa')
+                return true
+            }
+        }
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Debes seleccioanar todas las respuestas',
+            showConfirmButton: false,
+            timer: 2500
+        })
+
+        return false
     }
 
     console.log(answerOne, answerTwo, answerThree)
@@ -212,7 +283,7 @@ export const QuestionsCourse = ({url}) => {
                                                         </>
                                                         )
                                                     : ( i+1 === 4 ) 
-                                                    ? (<select
+                                                    ? (<><select
                                                             type='number'
                                                             onChange={handleInputChange}
                                                             className='auth__input-value input-select'
@@ -225,9 +296,13 @@ export const QuestionsCourse = ({url}) => {
                                                             <option  value={2}>2</option>
                                                             <option  value={3}>3</option>
                                                             <option  value={4}>4</option>
-                                                        </select>)
+                                                        </select>
+                                                        {
+                                                            answerFour != '' ? <AnswerQuestion petition={answerFour} /> : ''
+                                                        }
+                                                        </>)
                                                     : ( i+1 === 5 ) 
-                                                    ? (<select
+                                                    ? (<><select
                                                             type='number'
                                                             onChange={handleInputChange}
                                                             className='auth__input-value input-select'
@@ -240,9 +315,13 @@ export const QuestionsCourse = ({url}) => {
                                                             <option  value={2}>2</option>
                                                             <option  value={3}>3</option>
                                                             <option  value={4}>4</option>
-                                                        </select>)
+                                                        </select>
+                                                        {
+                                                            answerFive != '' ? <AnswerQuestion petition={answerFive} /> : ''
+                                                        }
+                                                        </>)
                                                     : ( i+1 === 6 ) 
-                                                    ? (<select
+                                                    ? (<><select
                                                             type='number'
                                                             onChange={handleInputChange}
                                                             className='auth__input-value input-select'
@@ -255,9 +334,14 @@ export const QuestionsCourse = ({url}) => {
                                                             <option  value={2}>2</option>
                                                             <option  value={3}>3</option>
                                                             <option  value={4}>4</option>
-                                                        </select>)
+                                                        </select>
+
+                                                        {
+                                                            answerSix != '' ? <AnswerQuestion petition={answerSix} /> : ''
+                                                        }
+                                                        </>)
                                                     : ( i+1 === 7 ) 
-                                                    ? (<select
+                                                    ? (<><select
                                                             type='number'
                                                             onChange={handleInputChange}
                                                             className='auth__input-value input-select'
@@ -270,8 +354,12 @@ export const QuestionsCourse = ({url}) => {
                                                             <option  value={2}>2</option>
                                                             <option  value={3}>3</option>
                                                             <option  value={4}>4</option>
-                                                        </select>)
-                                                    : (<select
+                                                        </select>
+                                                        {
+                                                            answerSeven != '' ? <AnswerQuestion petition={answerSeven} /> : ''
+                                                        }
+                                                        </>)
+                                                    : (<><select
                                                         type='number'
                                                         onChange={handleInputChange}
                                                         className='auth__input-value input-select'
@@ -284,7 +372,11 @@ export const QuestionsCourse = ({url}) => {
                                                         <option  value={2}>2</option>
                                                         <option  value={3}>3</option>
                                                         <option  value={4}>4</option>
-                                                    </select>)
+                                                    </select>
+                                                        {
+                                                            answerEight != '' ? <AnswerQuestion petition={answerEight} /> : ''
+                                                        }
+                                                    </>)
                                                 
                                     }
 
