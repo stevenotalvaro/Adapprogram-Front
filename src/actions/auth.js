@@ -55,12 +55,40 @@ export const startRegisterTeacher = (email, password, name, codigo, rol) => {
 }
 export const startRegisterWithEmailPassword = (email, password, name, codigo, rol, styleLearning) => {
     return (dispatch) => {
+
+        const course = [
+            {
+                variables: {
+                    content: true,
+                    requireAnswer: true
+                }
+            },
+            {
+                decisionStructures: {
+                    content: false,
+                    requireAnswer: false
+                }
+            },
+            {
+                iterativeStructures: {
+                    content: false,
+                    requireAnswer: false
+                }
+            },
+            {
+                iterativeFunctions: {
+                    content: false,
+                    requireAnswer: false
+                }
+            }
+        ]
         const newRolUser = {
             rol,
             codigo,
             name,
             email,
-            styleLearning
+            styleLearning,
+            course
         }
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -69,13 +97,11 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
                 newRolUser.loadCodeTeacherString = loadCodeTeacherString;
 
                 await user.updateProfile({displayName:name})
-                // await db.collection(`${user.uid}/adap/users/`).add(newRolUser);
                 await db.collection(`students/${user.uid}/information/`).add(newRolUser);
-                
                 await db.doc(`teachers/${loadCodeTeacherString}/students/${user.uid}/`).set(newRolUser);
                 
                 dispatch(
-                    login(user.uid, user.displayName, email, codigo, loadCodeTeacherString, styleLearning)
+                    login(user.uid, user.displayName, email, codigo, loadCodeTeacherString, styleLearning, course)
                 )
             })
             .then(() => sendCheckEmail())
