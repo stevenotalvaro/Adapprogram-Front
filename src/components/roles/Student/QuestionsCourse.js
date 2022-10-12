@@ -1,13 +1,15 @@
 import { CircularProgress } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
+import { setUpdateCorseContent } from '../../../actions/auth'
 import { fetchSinToken } from '../../../helpers/fetch'
 import { useFetch } from '../../../hooks/useFetch'
 import { useForm } from '../../../hooks/useForm'
 import { AnswerQuestion } from './AnswerQuestion'
 
 export const QuestionsCourse = ({url}) => {
-    console.log(url)
+    const dispatch = useDispatch();
     const {loading, data} = useFetch(url)
 
     const [answerOne, setAnswerOne] = useState('')
@@ -39,7 +41,7 @@ export const QuestionsCourse = ({url}) => {
             op7: 0,
             op8: 0,
         })
-        
+
     }, [url])
     
     
@@ -92,6 +94,34 @@ export const QuestionsCourse = ({url}) => {
                 setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/variables/1', dataRes[0], 'POST')))
                 setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/variables/2', dataRes[1], 'POST')))
                 setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/variables/3', dataRes[2], 'POST')))
+
+                const course = [
+                    {
+                        variables: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        decisionStructures: {
+                            content: true,
+                            requireAnswer: true
+                        }
+                    },
+                    {
+                        iterativeStructures: {
+                            content: false,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        iterativeFunctions: {
+                            content: false,
+                            requireAnswer: false
+                        }
+                    }
+                ]
+                dispatch(setUpdateCorseContent(course))
             }
         }
 
@@ -106,6 +136,34 @@ export const QuestionsCourse = ({url}) => {
                 setAnswerSix((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/6', dataRes[5], 'POST')))
                 setAnswerSeven((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/7', dataRes[6], 'POST')))
                 setAnswerEight((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/8', dataRes[7], 'POST')))
+
+                const course = [
+                    {
+                        variables: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        decisionStructures: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        iterativeStructures: {
+                            content: true,
+                            requireAnswer: true
+                        }
+                    },
+                    {
+                        iterativeFunctions: {
+                            content: false,
+                            requireAnswer: false
+                        }
+                    }
+                ]
+                dispatch(setUpdateCorseContent(course))
             }
         }
 
@@ -119,6 +177,34 @@ export const QuestionsCourse = ({url}) => {
                 setAnswerFive((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/5', dataRes[4], 'POST')))
                 setAnswerSix((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/6', dataRes[5], 'POST')))
                 setAnswerSeven((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/7', dataRes[6], 'POST')))
+
+                const course = [
+                    {
+                        variables: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        decisionStructures: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        iterativeStructures: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        iterativeFunctions: {
+                            content: true,
+                            requireAnswer: true
+                        }
+                    }
+                ]
+                dispatch(setUpdateCorseContent(course))
             }
         }
 
@@ -129,6 +215,34 @@ export const QuestionsCourse = ({url}) => {
                 setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/2', dataRes[1], 'POST')))
                 setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/3', dataRes[3], 'POST')))
                 setAnswerFour((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/4', dataRes[4], 'POST')))
+
+                const course = [
+                    {
+                        variables: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        decisionStructures: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        iterativeStructures: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    },
+                    {
+                        iterativeFunctions: {
+                            content: true,
+                            requireAnswer: false
+                        }
+                    }
+                ]
+                dispatch(setUpdateCorseContent(course))
             }
         }
 
@@ -191,8 +305,6 @@ export const QuestionsCourse = ({url}) => {
 
         return false
     }
-
-    console.log(answerOne, answerTwo, answerThree)
 
   return (
     <div className='questions'>

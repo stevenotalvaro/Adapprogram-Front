@@ -73,11 +73,11 @@
     list-style: none;
     margin-left: auto;
     margin-top: 10px;
-    transition: height .4s;
+    transition: all .4s;
     padding-left: 0;
     width: 80%;
     height: 0;
-    visibility: hidden;
+    display: none;
 }
 
 .list__inside {

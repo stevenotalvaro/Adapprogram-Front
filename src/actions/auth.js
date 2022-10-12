@@ -106,12 +106,14 @@ export const setUpdateStyleLearning = (name, codigo, email, loadCodeTeacherStrin
     return async (dispatch, getState) => {
         console.log('start')
         const { uid } = getState().auth;
+        const { rolCurrent:rol } = getState().rol;
 
         const info = {
             name, 
             codigo, 
             email, 
             loadCodeTeacherString, 
+            rol,
             styleLearning : {
                 visual,
                 auditivo,
@@ -138,6 +140,32 @@ export const startLoadingInfo = (uid) => {
     return async (dispatch) => {
         const { id, name, email, codigo, loadCodeTeacherString, styleLearning, course} = await loadInfoStudent(uid)
         dispatch(login(uid, name, email, id, codigo, loadCodeTeacherString, styleLearning, course))
+    }
+}
+
+export const setUpdateCorseContent = (course) => {
+    return async (dispatch, getState) => {
+        console.log('start')
+        const { uid, name, codigo, email, loadCodeTeacherString, styleLearning, id  } = getState().auth;
+        const { rolCurrent:rol } = getState().rol;
+
+        const info = {
+            name, 
+            codigo, 
+            email, 
+            loadCodeTeacherString, 
+            styleLearning,
+            id,
+            rol,
+            course
+        }
+
+        const studentToFireStore = {...info};
+        delete studentToFireStore.id
+
+        await db.doc(`students/${uid}/information/${info.id}`).update(studentToFireStore);
+        await db.doc(`teachers/${loadCodeTeacherString}/students/${uid}/`).update(studentToFireStore);
+        dispatch(login(uid, name, email, id, codigo, loadCodeTeacherString, styleLearning, course));
     }
 }
 
