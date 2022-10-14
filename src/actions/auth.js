@@ -131,7 +131,7 @@ export const startSendEmailReseat = ( email ) => {
 export const setUpdateStyleLearning = (name, codigo, email, loadCodeTeacherString, visual, auditivo, kinestesico , learningStyle, id) => {
     return async (dispatch, getState) => {
         console.log('start')
-        const { uid } = getState().auth;
+        const { uid, course } = getState().auth;
         const { rolCurrent:rol } = getState().rol;
 
         const info = {
@@ -146,7 +146,8 @@ export const setUpdateStyleLearning = (name, codigo, email, loadCodeTeacherStrin
                 kinestesico,
                 learningStyle
             }, 
-            id
+            id,
+            course
         }
 
         const {styleLearning} = info;
@@ -157,7 +158,7 @@ export const setUpdateStyleLearning = (name, codigo, email, loadCodeTeacherStrin
         await db.doc(`students/${uid}/information/${info.id}`).update(studentToFireStore);
         await db.doc(`teachers/${loadCodeTeacherString}/students/${uid}/`).update(studentToFireStore);
         console.log("hello")
-        dispatch(login(uid, name, email, id, codigo, loadCodeTeacherString, styleLearning));
+        dispatch(login(uid, name, email, id, codigo, loadCodeTeacherString, styleLearning, course));
         window.location.reload()
     }
 }
