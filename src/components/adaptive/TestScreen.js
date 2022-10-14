@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import { setUpdateStyleLearning } from '../../actions/auth';
 import { setTestRelized } from '../../actions/rol';
 import { useForm } from '../../hooks/useForm'
@@ -8,28 +9,13 @@ import { useForm } from '../../hooks/useForm'
 export const TestScreen = () => {
 
     const dispatch = useDispatch();
-    const { name, codigo, email, id, loadCodeTeacherString, styleLearning} = useSelector( state => state.auth );
+    const { name, codigo, email, id, loadCodeTeacherString} = useSelector( state => state.auth );
     
     const [visual, setVisual] = useState(0);
     const [auditivo, setAuditivo] = useState(0);
     const [kinestesico, setKinestesico] = useState(0);
     const [learningStyle, setLearningStyle] = useState('')
     const [validation, setValidation] = useState(false)
-    console.log(name, codigo, loadCodeTeacherString, styleLearning)
-
-    // const updateInfoStudent = {
-    //     name,
-    //     codigo,
-    //     email,
-    //     loadCodeTeacherString,
-    //     id,
-    //     styleLearning: {
-    //         visual,
-    //         auditivo,
-    //         kinestesico,
-    //         learningStyle
-    //     }
-    // }
 
     const [formValues, handleInputChange] = useForm({
         op1: 0,
@@ -73,22 +59,14 @@ export const TestScreen = () => {
     const { op1, op2, op3, op4, op5, op6, op7, op8, op9, op10, op11, op12, op13, op14, op15, op16, op17, op18, op19, op20, op21, op22, op23, op24, op25, op26, op27, op28, op29, op30, op31, op32, op33, op34, op35, op36 } = formValues
     
     useEffect(() => {
+
         setVisual(+op1 + +op5 + +op9 + +op10 + +op11 + +op16 + +op17 + +op22 + +op26 + +op27 + +op32 + +op36)
         setKinestesico(+op4 + +op6 + +op7 + +op8 + +op14 + +op18 + +op21 + +op25 + +op30 + +op31 + +op34 + +op35)
         setAuditivo(+op2 + +op3 + +op12 + +op13 + +op15 + +op19 + +op20 + +op23 + +op24 + +op28 + +op29 + +op33)
         
-      
     }, [op1, op2, op3, op4, op5, op6, op7, op8, op9, op10, op11, op12, op13, op14, op15, op16, op17, op18, op19, op20, op21, op22, op23, op24, op25, op26, op27, op28, op29, op30, op31, op32, op33, op34, op35, op36 ])
     
-    // useEffect(() => {
-    //     console.log("Updated")
-    //     dispatch(setUpdateStyleLearning(updateInfoStudent))
-      
-    // }, [learningStyle])
-
     if (validation) {
-        // const {name, codigo, email, loadCodeTeacherString, styleLearning, id} = updateInfoStudent
-        console.log(name, codigo, email, loadCodeTeacherString, visual, auditivo, kinestesico , learningStyle, id)
 
         return dispatch(setUpdateStyleLearning(name, codigo, email, loadCodeTeacherString, visual, auditivo, kinestesico , learningStyle, id));
     }
@@ -100,34 +78,29 @@ export const TestScreen = () => {
         dispatch(setTestRelized(true))
 
         for (const [key, value] of Object.entries(formValues)) {
-            if ( value <= 0 || value >= 6) return console.log("vacio")
+            if ( value <= 0 || value >= 6) return (Swal.fire('Revisa tus respuestas', 'Debes contestar todas las preguntas','info'))
         }
 
-        console.log(visual, kinestesico, auditivo)
             
         if(visual >= kinestesico) {
             if(visual >= auditivo) {
-                console.log("tu estilo es visula")
+                Swal.fire('Tu estilo de aprendizaje es VISUAL.', 'Pronto serás redireccionado al curso con tu estilo de aprendizaje.','success')
                 setLearningStyle('visual')
                 return setValidation(true)
-                // dispatch(setUpdateStyleLearning(updateInfoStudent))
             } else {
-                console.log("tue stilo es auditivo")
+                Swal.fire('Tu estilo de aprendizaje es AUDITIVO.', 'Pronto serás redireccionado al curso con tu estilo de aprendizaje.','success')
                 setLearningStyle('auditivo')
                 return setValidation(true)
-                // dispatch(setUpdateStyleLearning(updateInfoStudent))
             }
         } else  {
             if (kinestesico > auditivo) {
-                console.log("tu es tilo es kinestesico")
                 setLearningStyle('kinestesico')
+                Swal.fire('Tu estilo de aprendizaje es KINESTÉSICO.', 'Pronto serás redireccionado al curso con tu estilo de aprendizaje.','success')
                 return setValidation(true)
-                // dispatch(setUpdateStyleLearning(updateInfoStudent))
             } else {
-                console.log("tu estilo es auditivo")
+                Swal.fire('Tu estilo de aprendizaje es AUDITIVO.', 'Pronto serás redireccionado al curso con tu estilo de aprendizaje.','success')
                 setLearningStyle('auditivo')
                 return setValidation(true)
-                // dispatch(setUpdateStyleLearning(updateInfoStudent))
             }
         } 
     }

@@ -1,11 +1,16 @@
-import { CircularProgress } from '@material-ui/core';
-import React, { useEffect, useState } from 'react'
-import ReactPlayer from 'react-player';
+import React, { useEffect, useState } from 'react';
+import { useFetch } from '../../../hooks/useFetch';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { useFetch } from '../../../hooks/useFetch';
-import arrow from '../../../images/arrow.png'
+import ReactPlayer from 'react-player';
+import { CircularProgress } from '@material-ui/core';
 import { QuestionsCourse } from './QuestionsCourse';
+import Editor from '../../codeX/Editor';
+
+import arrow from '../../../images/arrow.png';
+import menuImg from '../../../images/menu.svg';
+import closeImg from '../../../images/close.svg';
+import { Link } from 'react-router-dom';
 
 export const NavCourse = () => {
 
@@ -15,7 +20,7 @@ export const NavCourse = () => {
     const [ urlPlayer, setUrlPlayer ] = useState('')
     const [ urlQuestion, setUrlQuestion ] = useState('')
     const [ viewSelected, setViewSelected ] = useState('')
-    console.log(course)
+    const [megaMenuSelected, setMegaMenuSelected] = useState(false)
 
     let arrayUrlQuestions = ['question/variables', 'question/estructurasdecision', 'question/estructurasiterativa', 'question/funcionesiterativas']
 
@@ -25,6 +30,21 @@ export const NavCourse = () => {
     
         listElements.forEach(listElement => {
             listElement.addEventListener('click', () => {
+
+                listElements.forEach(listElement => {
+                    listElement.classList.remove('arrow')
+                    let height = 0;
+                    let menu = listElement.nextElementSibling;
+
+                    if(menu.clientHeight != '0') {
+                        menu.style.height = 0 ;
+                        menu.style.opacity = 0 ;
+                        setTimeout(() => {
+                            menu.style.display = 'none';
+                        }, 300);
+                    }
+                })
+
                 listElement.classList.toggle('arrow')
 
                 let height = 0;
@@ -40,6 +60,7 @@ export const NavCourse = () => {
                 if(menu.clientHeight != '0') {
                     menu.style.height = 0 ;
                     menu.style.opacity = 0 ;
+                    listElement.classList.remove('arrow')
                     setTimeout(() => {
                         menu.style.display = 'none';
                     }, 300);
@@ -59,6 +80,13 @@ export const NavCourse = () => {
 
     }, [loading])
 
+    useEffect(() => {
+        if(learningStyle === 'kinestesico' && urlPlayer) {
+            document.querySelector('.content__kinestesico').innerHTML = urlPlayer
+        }
+    }, [urlPlayer])
+    
+
     const handleCourse = (urlContent, content) => {
 
         if(!content) {
@@ -72,6 +100,7 @@ export const NavCourse = () => {
         }
         setUrlPlayer(urlContent); 
         setViewSelected(true)
+        setMegaMenuSelected(false)
 
     }
 
@@ -81,13 +110,13 @@ export const NavCourse = () => {
     }
     
   return (
-    <nav className='nav'>
+    <nav className='nav container' id="nav">
         {
             loading ?
                 (
                     <CircularProgress color="primary" />
                 ) :
-                    (<ul className='list'>
+                    (<ul className='list nav__links' style={{transform: `translate(${megaMenuSelected ? 0 : '-100%'})`}}>
                         <div className='nav__title'>
                             <div className='nav__title--text'>
                                 <h1>Adapprogram: Curso para estudiantes de 1er semestre acorde a su estilo de aprendizaje.</h1>
@@ -100,7 +129,7 @@ export const NavCourse = () => {
                                 let requireAnswer = i === 0 ? course[i].variables.requireAnswer : i === 1 ? course[i].decisionStructures.requireAnswer : i === 2 ? course[i].iterativeStructures.requireAnswer : course[i].iterativeFunctions.requireAnswer 
                                 console.log(course[0].variables.content, content)
                                 
-                                return (<li key={i} className='list__item list__item--click'>
+                                return (<li key={i} className='list__item list__item--click nav__item'>
                                     <div className={`btn__list list__button list__button--click`}>
                                         <button className='btn__list nav__link'>{son.temas}</button>
                                         <img src={arrow} alt='Arrow icons created by Freepik - Flaticon' className='list__arrow' />
@@ -125,14 +154,23 @@ export const NavCourse = () => {
 
                         }
 
+
                     </ul>
                     
                     )
                     
         }
 
+        <button style={{transform: `scale(${megaMenuSelected ? 1 : 0})`,backgroundColor: 'white'}} onClick={() => (setMegaMenuSelected(!megaMenuSelected))} className='btn nav__close'>
+            <img src={closeImg} className='nav__icon' />
+        </button>
+        <button style={{transform: `scale(${megaMenuSelected ? 0 : 1})`}} onClick={() => (setMegaMenuSelected(!megaMenuSelected))} className='btn nav__hamburguer'>
+            <img src={menuImg} className='nav__icon' />
+        </button>
+
+        
         { 
-            (urlPlayer && viewSelected) &&
+            (urlPlayer && viewSelected && (learningStyle !== 'kinestesico')) &&
                 <div className='player'>
                     <ReactPlayer 
                         url={urlPlayer}
@@ -141,6 +179,16 @@ export const NavCourse = () => {
                         height='70%'
                         className="player__react--player"
                     />
+                </div>
+        }
+        {
+            (urlPlayer && viewSelected && (learningStyle == 'kinestesico'))  &&
+                <div className='container__kinestesico'>
+                    <div className='content__kinestesico'>
+                    </div>
+                    <div className='editor__kinestesico'>
+                        <Editor />
+                    </div>
                 </div>
         }
         {
