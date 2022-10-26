@@ -8,6 +8,8 @@ import { useFetch } from '../../../hooks/useFetch'
 import { useForm } from '../../../hooks/useForm'
 import { AnswerQuestion } from './AnswerQuestion'
 
+const baseUrl = process.env.REACT_APP_API_URL
+
 export const QuestionsCourse = ({url}) => {
     const dispatch = useDispatch();
     const {loading, data} = useFetch(url)
@@ -91,9 +93,9 @@ export const QuestionsCourse = ({url}) => {
         if(url.includes('/variables')) {
             console.log(+op1, +op2, +op3)
             if(isValid()) {
-                setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/variables/1', dataRes[0], 'POST')))
-                setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/variables/2', dataRes[1], 'POST')))
-                setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/variables/3', dataRes[2], 'POST')))
+                setAnswerOne((await fetchSinToken(`${baseUrl}/question/variables/1`, dataRes[0], 'POST')))
+                setAnswerTwo((await fetchSinToken(`${baseUrl}/question/variables/2`, dataRes[1], 'POST')))
+                setAnswerThree((await fetchSinToken(`${baseUrl}/question/variables/3`, dataRes[2], 'POST')))
 
                 const course = [
                     {
@@ -128,14 +130,14 @@ export const QuestionsCourse = ({url}) => {
         if(url.includes('/estructurasdecision')) {
             console.log(+op1, +op2, +op3)
             if(isValid()) {
-                setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/1', dataRes[0], 'POST')))
-                setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/2', dataRes[1], 'POST')))
-                setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/3', dataRes[2], 'POST')))
-                setAnswerFour((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/4', dataRes[3], 'POST')))
-                setAnswerFive((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/5', dataRes[4], 'POST')))
-                setAnswerSix((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/6', dataRes[5], 'POST')))
-                setAnswerSeven((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/7', dataRes[6], 'POST')))
-                setAnswerEight((await fetchSinToken('http://127.0.0.1:5000/question/estructurasdecision/8', dataRes[7], 'POST')))
+                setAnswerOne((await fetchSinToken(`${baseUrl}/question/estructurasdecision/1`, dataRes[0], 'POST')))
+                setAnswerTwo((await fetchSinToken(`${baseUrl}/question/estructurasdecision/2`, dataRes[1], 'POST')))
+                setAnswerThree((await fetchSinToken(`${baseUrl}/question/estructurasdecision/3`, dataRes[2], 'POST')))
+                setAnswerFour((await fetchSinToken(`${baseUrl}/question/estructurasdecision/4`, dataRes[3], 'POST')))
+                setAnswerFive((await fetchSinToken(`${baseUrl}/question/estructurasdecision/5`, dataRes[4], 'POST')))
+                setAnswerSix((await fetchSinToken(`${baseUrl}/question/estructurasdecision/6`, dataRes[5], 'POST')))
+                setAnswerSeven((await fetchSinToken(`${baseUrl}/question/estructurasdecision/7`, dataRes[6], 'POST')))
+                setAnswerEight((await fetchSinToken(`${baseUrl}/question/estructurasdecision/8`, dataRes[7], 'POST')))
 
                 const course = [
                     {
@@ -170,13 +172,13 @@ export const QuestionsCourse = ({url}) => {
         if(url.includes('/estructurasiterativa')) {
             console.log(+op1, +op2, +op3)
             if(isValid()) {
-                setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/1', dataRes[0], 'POST')))
-                setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/2', dataRes[1], 'POST')))
-                setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/3', dataRes[2], 'POST')))
-                setAnswerFour((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/4', dataRes[3], 'POST')))
-                setAnswerFive((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/5', dataRes[4], 'POST')))
-                setAnswerSix((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/6', dataRes[5], 'POST')))
-                setAnswerSeven((await fetchSinToken('http://127.0.0.1:5000/question/estructurasiterativa/7', dataRes[6], 'POST')))
+                setAnswerOne((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/1`, dataRes[0], 'POST')))
+                setAnswerTwo((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/2`, dataRes[1], 'POST')))
+                setAnswerThree((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/3`, dataRes[2], 'POST')))
+                setAnswerFour((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/4`, dataRes[3], 'POST')))
+                setAnswerFive((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/5`, dataRes[4], 'POST')))
+                setAnswerSix((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/6`, dataRes[5], 'POST')))
+                setAnswerSeven((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/7`, dataRes[6], 'POST')))
 
                 const course = [
                     {
@@ -211,10 +213,10 @@ export const QuestionsCourse = ({url}) => {
         if(url.includes('/funcionesiterativas')) {
             console.log(+op1, +op2, +op3)
             if(isValid()) {
-                setAnswerOne((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/1', dataRes[0], 'POST')))
-                setAnswerTwo((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/2', dataRes[1], 'POST')))
-                setAnswerThree((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/3', dataRes[3], 'POST')))
-                setAnswerFour((await fetchSinToken('http://127.0.0.1:5000/question/funcionesiterativas/4', dataRes[4], 'POST')))
+                setAnswerOne((await fetchSinToken(`${baseUrl}/question/funcionesiterativas/1`, dataRes[0], 'POST')))
+                setAnswerTwo((await fetchSinToken(`${baseUrl}/question/funcionesiterativas/2`, dataRes[1], 'POST')))
+                setAnswerThree((await fetchSinToken(`${baseUrl}/question/funcionesiterativas/3`, dataRes[3], 'POST')))
+                setAnswerFour((await fetchSinToken(`${baseUrl}/question/funcionesiterativas/4`, dataRes[4], 'POST')))
 
                 const course = [
                     {

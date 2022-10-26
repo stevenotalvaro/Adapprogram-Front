@@ -10,15 +10,17 @@ import Editor from '../../codeX/Editor';
 import arrow from '../../../images/arrow.png';
 import menuImg from '../../../images/menu.svg';
 import closeImg from '../../../images/close.svg';
-import { Link } from 'react-router-dom';
+
+const baseUrl = process.env.REACT_APP_API_URL
 
 export const NavCourse = () => {
 
     const { learningStyle } = useSelector( state => state.auth.styleLearning );
     const { course } = useSelector( state => state.auth );
-    const { loading, data } = useFetch(`http://127.0.0.1:5000/video/list/${learningStyle}`)
+    const { loading, data } = useFetch(`${baseUrl}/video/list/${learningStyle}`)
     const [ urlPlayer, setUrlPlayer ] = useState('')
     const [ urlQuestion, setUrlQuestion ] = useState('')
+    const [ urlQuestionToDo, setUrlQuestionToDo ] = useState('')
     const [ viewSelected, setViewSelected ] = useState('')
     const [megaMenuSelected, setMegaMenuSelected] = useState(false)
 
@@ -69,25 +71,17 @@ export const NavCourse = () => {
             })
         })
 
-        let buttonDisabled = document.querySelectorAll('button[disabled]')
-
-        buttonDisabled.forEach(buttonElement => {
-            buttonElement.addEventListener('click', () => {
-                
-            })
-        })
-
-
     }, [loading])
 
     useEffect(() => {
         if(learningStyle === 'kinestesico' && urlPlayer) {
-            document.querySelector('.content__kinestesico').innerHTML = urlPlayer
+            document.querySelector('.content__kinestesico').innerHTML = urlPlayer;
+            console.log(document.querySelector('.content__kinestico-questions p'));
+            document.querySelector('.content__kinestico-questions p').innerHTML = urlQuestionToDo;
         }
     }, [urlPlayer])
-    
 
-    const handleCourse = (urlContent, content) => {
+    const handleCourse = (urlContent, questionToDo, content) => {
 
         if(!content) {
             return (Swal.fire({
@@ -99,8 +93,9 @@ export const NavCourse = () => {
             }))
         }
         setUrlPlayer(urlContent); 
-        setViewSelected(true)
-        setMegaMenuSelected(false)
+        setUrlQuestionToDo(questionToDo);
+        setViewSelected(true);
+        setMegaMenuSelected(false);
 
     }
 
@@ -108,6 +103,8 @@ export const NavCourse = () => {
         setUrlQuestion(urlQuestion); 
         setViewSelected(false);
     }
+
+    console.log(data);
     
   return (
     <nav className='nav container' id="nav">
@@ -127,7 +124,6 @@ export const NavCourse = () => {
                             data.map((son, i)=> {
                                 let content = i == 0  ? course[i].variables.content : i === 1 ? course[i].decisionStructures.content : i === 2 ? course[i].iterativeStructures.content : course[i].iterativeFunctions.content 
                                 let requireAnswer = i === 0 ? course[i].variables.requireAnswer : i === 1 ? course[i].decisionStructures.requireAnswer : i === 2 ? course[i].iterativeStructures.requireAnswer : course[i].iterativeFunctions.requireAnswer 
-                                console.log(course[0].variables.content, content)
                                 
                                 return (<li key={i} className='list__item list__item--click nav__item'>
                                     <div className={`btn__list list__button list__button--click`}>
@@ -140,12 +136,12 @@ export const NavCourse = () => {
                                             son.contenido.map((sonconte, i) => {
                                                 console.log(content)
                                                 return (<li key={i} className='list__inside'>
-                                                    <button onClick={()=>{handleCourse(sonconte.url, content)}} className='btn__list nav__link nav__link--inside'>{sonconte.titulo}</button>
+                                                    <button onClick={()=>{handleCourse(sonconte.url, sonconte.question, content)}} className='btn__list nav__link nav__link--inside'>{sonconte.titulo}</button>
                                                 </li>)
                                             })
                                         }
                                         <li key={i} className='list__inside'>
-                                            <button disabled={!requireAnswer} onClick={() => {handleAnswer(`http://127.0.0.1:5000/${arrayUrlQuestions[i]}`)}} className='btn__list nav__link nav__link--inside'>Preguntas</button>
+                                            <button disabled={!requireAnswer} onClick={() => {handleAnswer(`${baseUrl}/${arrayUrlQuestions[i]}`)}} className='btn__list nav__link nav__link--inside'>Preguntas</button>
                                         </li>
                                     </ul>
                                 </li>
@@ -186,6 +182,16 @@ export const NavCourse = () => {
                 <div className='container__kinestesico'>
                     <div className='content__kinestesico'>
                     </div>
+                        <div className='content__kinestico-questions'>
+                            {
+                                urlQuestionToDo && (
+                                    <>
+                                        <h1>Ejericio a Realizar</h1>
+                                    </>
+                                )
+                            }
+                            <p style={{fontWeight: 'bold'}}></p>
+                        </div>
                     <div className='editor__kinestesico'>
                         <Editor />
                     </div>
