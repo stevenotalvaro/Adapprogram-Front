@@ -1,3 +1,14 @@
+.content__kinestesico, 
+.content__kinestico-questions {
+    font-family: 'Nunito-Regular';
+    background: $white;
+    margin: 35px;
+    border-radius: 5px;
+    box-shadow: $box-shodow-black;
+    margin: 50px auto 0;
+    max-width: 950px;
+}
+
 @media (min-width:1280px) {
     .nav__container {
         margin: 0;
@@ -10,6 +21,7 @@
         width: 100%;
         display: flex;
         position: relative;
+        justify-content: flex-end;
     }
     
     .nav__title {
@@ -31,10 +43,15 @@
         display: flex;
         flex-direction: column;
         padding: 0;
-        height: calc(100vh - 80px);
-        width: 320px;
+        position: fixed;
+        padding-top: 80px;
+        height: 100vh;
+        top: 0;
+        left: 0;
         overflow-y: scroll;
         transform: translate(0) !important;
+        width: 320px;
+        z-index: 1;
     }
     
     .list__item {
@@ -121,14 +138,28 @@
         width: calc(100% - 320px);
         .content__kinestesico {
             columns: 2;
-            font-size: 18px;
+            font-size: 20px;
             padding: 10px 35px;
     
             &::first-line {
                 font-weight: 900;
-                font-size: 28px;
+                font-size: 34px;
+            }
+
+            img {
+                width: 100%;
             }
         }
+
+        .content__kinestico-questions {
+            padding: 20px;
+
+            > p {
+                font-size: 18px;
+                margin-top: 10px;
+            }
+        }
+
         .editor__kinestesico {
             margin: 20px;
             position: relative;
@@ -148,6 +179,7 @@
 @media (max-width:1280px) {
     .nav__container {
         position: relative;
+        background-color: $baground-gray;
     }
     .container {
         max-width: 1200px;
@@ -285,6 +317,7 @@
 
         .content__kinestesico {
             text-align: justify;
+            padding: 10px;
 
             &::first-line {
                 font-weight: 900;

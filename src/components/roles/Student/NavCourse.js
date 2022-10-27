@@ -190,7 +190,7 @@ export const NavCourse = () => {
                                     </>
                                 )
                             }
-                            <p style={{fontWeight: 'bold'}}></p>
+                            <p></p>
                         </div>
                     <div className='editor__kinestesico'>
                         <Editor />
