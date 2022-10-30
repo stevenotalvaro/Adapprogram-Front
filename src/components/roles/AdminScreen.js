@@ -15,11 +15,10 @@ export const AdminScreen = () => {
     
 
     const [formValues, handleInputChange] = useForm({
-        name: 'Nando fernando',
-        email: 'nando@gmail.com',
-        password: '1234567',
-        password2: '1234567',
-        // codigo: generedId,
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
         rol: 'teacher'
     })
     

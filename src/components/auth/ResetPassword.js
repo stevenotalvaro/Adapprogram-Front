@@ -11,7 +11,7 @@ export const ResetPassword = () => {
     const dispatch = useDispatch()
     const {msgError} = useSelector(state => state.ui)
     const [formValues, handleInputChange] = useForm({
-        email: 'estiven12mira@gmail.com',
+        email: '',
     })
 
     const { email } = formValues;
