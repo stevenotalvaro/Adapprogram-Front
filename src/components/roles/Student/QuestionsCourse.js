@@ -91,7 +91,6 @@ export const QuestionsCourse = ({url}) => {
         ]
 
         if(url.includes('/variables')) {
-            console.log(+op1, +op2, +op3)
             if(isValid()) {
                 setAnswerOne((await fetchSinToken(`${baseUrl}/question/variables/1`, dataRes[0], 'POST')))
                 setAnswerTwo((await fetchSinToken(`${baseUrl}/question/variables/2`, dataRes[1], 'POST')))
@@ -128,7 +127,6 @@ export const QuestionsCourse = ({url}) => {
         }
 
         if(url.includes('/estructurasdecision')) {
-            console.log(+op1, +op2, +op3)
             if(isValid()) {
                 setAnswerOne((await fetchSinToken(`${baseUrl}/question/estructurasdecision/1`, dataRes[0], 'POST')))
                 setAnswerTwo((await fetchSinToken(`${baseUrl}/question/estructurasdecision/2`, dataRes[1], 'POST')))
@@ -170,7 +168,6 @@ export const QuestionsCourse = ({url}) => {
         }
 
         if(url.includes('/estructurasiterativa')) {
-            console.log(+op1, +op2, +op3)
             if(isValid()) {
                 setAnswerOne((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/1`, dataRes[0], 'POST')))
                 setAnswerTwo((await fetchSinToken(`${baseUrl}/question/estructurasiterativa/2`, dataRes[1], 'POST')))
@@ -211,7 +208,6 @@ export const QuestionsCourse = ({url}) => {
         }
 
         if(url.includes('/funcionesiterativas')) {
-            console.log(+op1, +op2, +op3)
             if(isValid()) {
                 setAnswerOne((await fetchSinToken(`${baseUrl}/question/funcionesiterativas/1`, dataRes[0], 'POST')))
                 setAnswerTwo((await fetchSinToken(`${baseUrl}/question/funcionesiterativas/2`, dataRes[1], 'POST')))
@@ -271,28 +267,24 @@ export const QuestionsCourse = ({url}) => {
     const isValid = () => {
         if(url.includes('/variables')) {
             if((+op1 &&  +op2 && +op3) >= 1 && (+op1 &&  +op2 && +op3) <= 5 ) {
-                console.log('true')
                 return true
             }
         }
 
         if(url.includes('/estructurasdecision')) {
             if((+op1 &&  +op2 && +op3 && +op4 &&  +op5 && +op6 && +op7 &&  +op8) >= 1 && (+op1 &&  +op2 && +op3 && +op4 &&  +op5 && +op6 && +op7 &&  +op8) <= 5 ) {
-                console.log('TRUE decision')
                 return true
             }
         }
 
         if(url.includes('/estructurasiterativa')) {
             if((+op1 &&  +op2 && +op3 && +op4 &&  +op5 && +op6 && +op7) >= 1 && (+op1 &&  +op2 && +op3 && +op4 &&  +op5 && +op6 && +op7) <= 5 ) {
-                console.log('TRUE iterativa')
                 return true
             }
         }
 
         if(url.includes('/funcionesiterativas')) {
             if((+op1 &&  +op2 && +op3 && +op4 ) >= 1 && (+op1 &&  +op2 && +op3 && +op4 ) <= 5 ) {
-                console.log('TRUE func iterativa')
                 return true
             }
         }

@@ -6,6 +6,7 @@
     margin: 0;
     height: 100vh;
     width: 100vw;
+    padding: 0 15px;
 }
 
 .auth__box-container {
@@ -30,7 +31,7 @@
     border-bottom: 1px solid $light-grey;
     font-size: 18px;
     margin-bottom: 10px;
-    height: 20px;
+    height: 30px;
     width: 100%;
 
     transition: border-bottom 0.3s ease;

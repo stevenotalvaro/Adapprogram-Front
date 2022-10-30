@@ -9,7 +9,6 @@ export const PrivateRoute = ({
     component2: Component2,
     ...rest
 }) => {
-    console.log(isVerified, 'sss')
     return (
         <Route
             {...rest}

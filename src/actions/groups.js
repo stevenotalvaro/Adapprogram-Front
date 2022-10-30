@@ -20,7 +20,6 @@ export const startNewGroup = ( carrera, periodo, grupo, jornada, codigo, descrip
         const newCodeTeacher = {
             codeTeacher: uid
         }
-        console.log(newGroup)
 
         const doc = await db.collection(`teachers/${uid}/groups`).add(newGroup)
         await db.collection(`groups/codeTeacher/${codigo}`).add(newCodeTeacher)
@@ -93,7 +92,6 @@ export const startGetGroupsStudents = ( groupId ) => {
     return async ( dispatch, getState ) => {
         const { uid } = getState().auth;
         const group = await getStudentsGroups(uid, groupId)
-        console.log(group)
         dispatch(setGroupsStudents(group))
     }
 }

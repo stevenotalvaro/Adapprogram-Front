@@ -7,7 +7,6 @@ export const VerificationScreen = () => {
   const handleReSend = (e) => {
     e.preventDefault()
     sendCheckEmail()
-    console.log('enviado')
   }
 
   return (

@@ -7,6 +7,10 @@
     box-shadow: $box-shodow-black;
     margin: 50px auto 0;
     max-width: 950px;
+
+    ul h2 {
+        margin-left: -40px;
+    }
 }
 
 @media (min-width:1280px) {
@@ -18,10 +22,10 @@
     }
     
     .nav {
-        width: 100%;
         display: flex;
         position: relative;
-        justify-content: flex-end;
+        margin-left: 320px;
+        justify-content: center;
     }
     
     .nav__title {
@@ -140,14 +144,20 @@
             columns: 2;
             font-size: 20px;
             padding: 10px 35px;
-    
-            &::first-line {
-                font-weight: 900;
-                font-size: 34px;
+
+            h2 {
+                font-size: 25px;
+                font-family: 'SegoEui', Poppins;
             }
 
             img {
                 width: 100%;
+                border-radius: 5px;
+            }
+    
+            &::first-line {
+                font-weight: 900;
+                font-size: 34px;
             }
         }
 
@@ -164,6 +174,8 @@
             margin: 20px;
             position: relative;
             height: 700px;
+            width: calc(100vw - 390px);
+            margin-left: -135px;
     
             .ace_content {
                 left: 0 !important;
@@ -202,6 +214,7 @@
         transition: all .4s;
         border-radius: 10px;
         position: absolute;
+        top: -73px;
     }
 
     .nav__close {
@@ -313,7 +326,7 @@
     }
 
     .container__kinestesico {
-        margin-top: 80px;
+        margin-top: -30px;
 
         .content__kinestesico {
             text-align: justify;
@@ -325,7 +338,7 @@
             }
 
             img {
-                width: 88vw;
+                width: 100%;
             }
         }
 
@@ -340,5 +353,8 @@
         }
     }
 
+    .content__kinestico-questions {
+        padding: 10px;
+    }
 }
 

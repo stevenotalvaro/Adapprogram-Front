@@ -172,7 +172,6 @@ function EditorBody() {
         kt: "kotlin",
         swift: "swift",
       };
-      console.log(langArray[lang]);
       setEditorLanguage(langArray[lang]);
     }
   }, [lang]);
@@ -186,8 +185,6 @@ function EditorBody() {
       input: input,
     };
 
-    console.log(data)
-
     var config = {
       method: "post",
       url: "https://codex-api.herokuapp.com/",
@@ -196,8 +193,6 @@ function EditorBody() {
       },
       data: data,
     };
-
-    console.log(code)
 
     axios(config)
       .then(function (response) {
@@ -210,8 +205,6 @@ function EditorBody() {
         setOutputValue("Network Error");
       });
   };
-
-  console.log(outputValue)
 
   return (
     <ThemeProvider theme={darkTheme}>

@@ -6,10 +6,6 @@ export const Sidebar = () => {
   return (
     <aside className='adaptive__sidebar-container'>
         <SessionsEntries />
-
-        <Link className='adaptive__sidebar-reports' style={{textDecoration: 'none'}} to={`./teacher/reports`} >
-          Ver reportes
-        </Link>
     </aside>
   )
 }

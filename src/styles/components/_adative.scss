@@ -75,7 +75,7 @@
                 display: flex;
                 justify-content: space-around;
                  align-items: center;
-                 height: 75px;
+                 height: 95px;
     
                  span {              
                       width: 80%;
@@ -87,19 +87,19 @@
                   }
             }
         }
-    
     }
 }
+
 .auth__title-entries {
     margin-left: 25px;
 }
 
 .teacher__entries {
-    overflow-y: scroll;
+    overflow-y: auto;
     display: grid;
     grid-gap: 10px;
     margin-left: 20px;
-    max-height: 462px;
+    max-height: 470px;
     padding: 0 5px;
     
     h2 {
@@ -131,5 +131,22 @@
 
     .teacher__entry-email {
         margin-top: 10px;
+    }
+}
+
+@media (max-width:1280px) {
+    .adaptive__sidebar, 
+    .navbar__teacher-container {
+        h3 {
+            font-size: 16px;
+            padding-left: 25px;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .test__form .test__container .test__container-type .test__box {
+        height: unset;
+        padding: 15px 0;
     }
 }

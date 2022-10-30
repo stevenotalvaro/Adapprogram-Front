@@ -30,7 +30,6 @@ export const AdminScreen = () => {
         e.preventDefault()
         if (isFormValid()) {
             dispatch(startRegisterTeacher(email, password, name, '', rol))
-            console.log("Se registro")
         }
     }
 
@@ -46,7 +45,6 @@ export const AdminScreen = () => {
             return false
         } else if (password !== password2) {
             dispatch(setError('Contraseña no son iguales'))
-            console.log('Password should be at least 6 characters and match each other')
             return false
         }
 

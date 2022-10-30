@@ -26,7 +26,7 @@
     }
 
     .auth__input-admin {
-        width: calc(100% - 25px);
+        width: 100%;
         border-color: rgb(229,231,235);
         
         border-style: solid;
@@ -49,7 +49,7 @@
 ///// Teacher
 .teacher__main-content {
     display: flex;
-    height: calc(80vh - 60px);
+    height: calc(90vh - 60px);
 
     .adaptive__sidebar-container {
         width: 25%;
@@ -116,7 +116,7 @@
             transition: color 300ms ease-in;
 
             &:hover {
-                color: invert($color: #000000);
+                color: $red;
             }
         }
     }

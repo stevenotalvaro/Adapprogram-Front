@@ -14,6 +14,5 @@ export const getStudentsGroups = async (uid, code) => {
         }
     })
 
-    console.log(students)
     return students
 }

@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
 
 export const StudentsEntry = memo(({name, email, styleLearning}) => {
-    console.log('Me volvi a llamar')
     return (
         <div className='student-entry'>
             <p> <img src="https://cdn-icons-png.flaticon.com/512/994/994642.png" width={40} height={40} alt="Name icons created by geotatah - Flaticon" />{ name }</p>

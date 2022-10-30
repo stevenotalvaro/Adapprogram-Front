@@ -10,8 +10,6 @@ export const PublicRoute = ({
     ...rest
 }) => {
     const {rolCurrent} = useSelector( state => state.rol );
-    console.log("public")
-    console.log(isVerified, isAuthenticated)
     return (
         <Route
             {...rest}

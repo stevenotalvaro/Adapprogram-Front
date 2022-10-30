@@ -34,7 +34,6 @@ export const useFetch = ( urlPath, data, method = 'GET') => {
 							data,
 						});
 					} else {
-						console.log('Fue desmontado');
 					}
 				});
 			} else {
@@ -54,7 +53,6 @@ export const useFetch = ( urlPath, data, method = 'GET') => {
 								data,
 							});
 						} else {
-							console.log('Fue desmontado');
 						}
 					});
 		}

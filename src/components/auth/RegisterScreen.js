@@ -40,7 +40,6 @@ export const RegisterScreen = () => {
 
     const isFormValid = async () => {
         const loadCodeTeacher2 = await loadCodeTeacher(codigo)
-        console.log(loadCodeTeacher2)
         if (name.trim().length < 5) {
             dispatch(setError('El nombre es requerido'))
             return false
@@ -52,14 +51,11 @@ export const RegisterScreen = () => {
             return false
         } else if (password !== password2) {
             dispatch(setError('Contraseña no son iguales'))
-            console.log('Password should be at least 6 characters and match each other')
             return false
         } else if (!loadCodeTeacher2) {
             dispatch(setError('EL codigo no existe'))
-            console.log("codigo no existe")
             return false
         }
-        console.log("1")
         dispatch(removeError())
         return true
     }
@@ -126,7 +122,7 @@ export const RegisterScreen = () => {
                 </button>
             </form>
 
-            <Link className='link' to='/auth/login'>
+            <Link className='link' to='/auth/reset'>
                 ¿Olvidaste tu contraseña?.
             </Link>
             

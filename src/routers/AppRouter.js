@@ -29,10 +29,8 @@ export const AppRouter = () => {
   useEffect(() => {
     
     firebase.auth().onAuthStateChanged(async (user) => {
-      console.log(user)
       if ( user ) {
         const rol = await loadRol(user.uid)
-        console.log(user.email)
 
         rol === 'student' ? dispatch(startLoadingInfo(user.uid)) 
                           : dispatch(login(user.uid, user.displayName, user.email))

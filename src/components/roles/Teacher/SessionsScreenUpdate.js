@@ -10,8 +10,6 @@ export const SessionsScreenUpdate = () => {
     const { msgError } = useSelector(state => state.ui);
     const { active:group} = useSelector(state => state.groups)
     
-    console.log(group)
-    
     const isFormValid = () => {
         if(carrera === "") {
             dispatch(setError("Por favor selecciona algua de las carreras "))
@@ -20,11 +18,9 @@ export const SessionsScreenUpdate = () => {
             dispatch(setError('Por favor inserta un periodo valido; Ej 2022-2'))
             return false
         } else if(grupo.trim().length <= 1 ) {
-            console.log(grupo.trim().length)
             dispatch(setError('Por favor inserta un grupo valido; Ej 50'))
             return false;
         } else if (jornada !== 'Diurna' && jornada !== 'Nocturna') {
-            console.log(jornada)
             dispatch(setError('Por faovr selecciona una jornada valida')) 
             return false;
         } else if (codigo !== codigo) {
@@ -43,14 +39,11 @@ export const SessionsScreenUpdate = () => {
 
     currentMonth <= 6 ? peri = 1 : peri = 2;
 
-    console.log(year, currentMonth, peri)
-
     const [formValues, handleInputChange, reset] = useForm(group)
 
     const handleUpdate = (e) =>{
         e.preventDefault()
       
-        console.log(group)
         if (isFormValid()) {
             dispatch(setUpdateGroup(group))
         }
@@ -63,7 +56,6 @@ export const SessionsScreenUpdate = () => {
     useEffect(() => {
       if(group.id !== activeId.current) {
         reset(group);
-        console.log("hellooo")
         activeId.current = group.id
       }
     }, [group, reset])

@@ -14,8 +14,6 @@ export const GroupScreen = () => {
         dispatch(startGetGroupsStudents(groupId))
     }, [])
     
-    console.log("groups")
-    
     const { groupsStudents } = useSelector( state => state.groups );
     const [dataChart, setDataChart] = useState({})
     const [chartOption, setChartOption] = useState(true)
@@ -27,9 +25,7 @@ export const GroupScreen = () => {
 
     useEffect(() => {
         
-      console.log(groupsStudents)
       groupsStudents?.map(data => {
-          console.log(data.styleLearning?.learningStyle)
           data.styleLearning?.learningStyle === 'visual' ? visual++ : data.styleLearning?.learningStyle === 'auditivo' ? auditivo++ : data.styleLearning?.learningStyle === 'kinestesico' ? kinestico++ : noRealizado++
       })
     

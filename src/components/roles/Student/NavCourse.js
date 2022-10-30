@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useFetch } from '../../../hooks/useFetch';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ import closeImg from '../../../images/close.svg';
 
 const baseUrl = process.env.REACT_APP_API_URL
 
-export const NavCourse = () => {
+export const NavCourse = memo(() => {
 
     const { learningStyle } = useSelector( state => state.auth.styleLearning );
     const { course } = useSelector( state => state.auth );
@@ -73,14 +73,6 @@ export const NavCourse = () => {
 
     }, [loading])
 
-    useEffect(() => {
-        if(learningStyle === 'kinestesico' && urlPlayer) {
-            document.querySelector('.content__kinestesico').innerHTML = urlPlayer;
-            console.log(document.querySelector('.content__kinestico-questions p'));
-            document.querySelector('.content__kinestico-questions p').innerHTML = urlQuestionToDo;
-        }
-    }, [urlPlayer])
-
     const handleCourse = (urlContent, questionToDo, content) => {
 
         if(!content) {
@@ -102,10 +94,22 @@ export const NavCourse = () => {
     const handleAnswer = (urlQuestion) => {
         setUrlQuestion(urlQuestion); 
         setViewSelected(false);
+        setMegaMenuSelected(false);
     }
 
-    console.log(data);
-    
+    useEffect(() => {
+        if(learningStyle === 'kinestesico' && urlPlayer) {
+            document.querySelector('.content__kinestesico').innerHTML = urlPlayer;
+            document.querySelector('.content__kinestico-questions p').innerHTML = urlQuestionToDo;
+
+            if(!document.querySelector('.content__kinestico-questions p').textContent) {
+                document.querySelector('.content__kinestico-questions').style.display = 'none';
+            } else {
+                document.querySelector('.content__kinestico-questions').style.display = 'block'
+            }
+        }
+    }, [urlPlayer])
+
   return (
     <nav className='nav container' id="nav">
         {
@@ -134,7 +138,6 @@ export const NavCourse = () => {
 
                                         {
                                             son.contenido.map((sonconte, i) => {
-                                                console.log(content)
                                                 return (<li key={i} className='list__inside'>
                                                     <button onClick={()=>{handleCourse(sonconte.url, sonconte.question, content)}} className='btn__list nav__link nav__link--inside'>{sonconte.titulo}</button>
                                                 </li>)
@@ -205,4 +208,4 @@ export const NavCourse = () => {
         }
     </nav>
   )
-}
+})

@@ -73,7 +73,6 @@ export const TestScreen = () => {
     
     const handleValues = (e) => {
         e.preventDefault()
-        console.log(formValues, formValues.op1)
         
         dispatch(setTestRelized(true))
 

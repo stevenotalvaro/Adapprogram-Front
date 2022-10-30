@@ -10,8 +10,6 @@ export const SessionsScreen = () => {
     const { msgError } = useSelector(state => state.ui);
     const { active:group } = useSelector(state => state.groups)
     
-    console.log(group)
-    
     const generarID = () => {
         const random = Math.random().toString(36).substr(2).toUpperCase();
         const fecha = Date.now().toString(36);
@@ -27,8 +25,6 @@ export const SessionsScreen = () => {
 
     currentMonth <= 6 ? peri = 1 : peri = 2;
 
-    console.log(year, currentMonth, peri)
-
     const [formValues, handleInputChange, reset] = useForm({
         carrera: '',
         periodo: `${year}-${peri}`,
@@ -42,7 +38,6 @@ export const SessionsScreen = () => {
     
     const handleRegister = (e) =>{
         e.preventDefault()
-        console.log(carrera, periodo, grupo, jornada, codigo, descripcion)
         if (isFormValid()) {
             dispatch(startNewGroup(carrera, periodo, grupo, jornada, codigo, descripcion))
             reset({
@@ -61,7 +56,6 @@ export const SessionsScreen = () => {
     useEffect(() => {
       if(group.id !== activeId.current) {
         reset(group);
-        console.log("hellooo")
         activeId.current = group.id
       }
     }, [group, reset])    
@@ -74,11 +68,9 @@ export const SessionsScreen = () => {
             dispatch(setError('Por favor inserta un periodo valido; Ej 2022-2'))
             return false
         } else if(grupo.trim().length <= 1 ) {
-            console.log(grupo.trim().length)
             dispatch(setError('Por favor inserta un grupo valido; Ej 50'))
             return false;
         } else if (jornada != 'Diurna' && jornada != 'Nocturna') {
-            console.log(jornada)
             dispatch(setError('Por faovr selecciona una jornada valida')) 
             return false;
         } else if (codigo != codigo) {

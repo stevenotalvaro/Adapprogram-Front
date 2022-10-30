@@ -5,8 +5,6 @@ import { AdminScreen } from '../components/roles/AdminScreen';
 import { StudentScreen } from '../components/roles/StudentScreen';
 import { GroupScreen } from '../components/roles/Teacher/GroupScreen';
 import { TeacherScreen } from '../components/roles/TeacherScreen';
-import { Sidebar } from '../components/adaptive/Sidebar'
-import { Reports } from '../components/roles/Teacher/group-student/Reports';
 import { Backdrop, CircularProgress } from '@material-ui/core';
 
 export const AuthRol = () => {
@@ -31,7 +29,6 @@ if(rolCurrent === "") {
                         (rolCurrent === 'teacher' ?
                             <Switch>
                                 <Route exact path="/rol/teacher" component={TeacherScreen}/> 
-                                <Route exact path={"/rol/teacher/reports"} component={Reports} />
                                 <Route exact path={"/rol/teacher/:groupId"} component={GroupScreen} />
                             </Switch>
                             :

@@ -6,6 +6,7 @@
     justify-content: space-between;
 
     img {
-        height: 80vh
+        width: 100vw;
+        max-width: max-content;
     }
 }
