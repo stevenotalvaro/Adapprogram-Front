@@ -187,7 +187,7 @@ function EditorBody() {
 
     var config = {
       method: "post",
-      url: "https://codex-api.herokuapp.com/",
+      url: "https://codex-api-backend.herokuapp.com/",
       headers: {
         "Content-Type": "application/json",
       },
