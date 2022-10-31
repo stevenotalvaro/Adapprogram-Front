@@ -55,7 +55,7 @@ export const startRegisterTeacher = (email, password, name, codigo, rol) => {
 }
 export const startRegisterWithEmailPassword = (email, password, name, codigo, rol, styleLearning) => {
     return (dispatch) => {
-
+        dispatch(startLoading())
         const course = [
             {
                 variables: {
@@ -103,11 +103,13 @@ export const startRegisterWithEmailPassword = (email, password, name, codigo, ro
                 dispatch(
                     login(user.uid, user.displayName, email, codigo, loadCodeTeacherString, styleLearning, course)
                 )
+                dispatch(finishLoading())
             })
             .then(() => sendCheckEmail())
             .catch( e => {
                 console.log(e)
                 Swal.fire('Error', e.message, 'error')
+                dispatch(finishLoading())
             })        
     }
 }

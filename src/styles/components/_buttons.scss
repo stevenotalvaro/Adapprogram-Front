@@ -15,20 +15,22 @@
 .btn-primary {
     background-color: $red;
     border-radius: 2px;
-
-    &:disabled {
-        background-color: lighten(
-            $color: $red,
-            $amount: 20
-        );
-    }
-
+    
     &:hover {
         background-color: darken(
             $color: $red,
-            $amount: 15
+            $amount: 7
         );
     }
+
+    &:disabled {
+        background-color: $red-disabled;
+        
+        &:hover {
+            background-color: $red-disabled;
+        }
+    }
+
 }
 
 .btn-block {

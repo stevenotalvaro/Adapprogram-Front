@@ -5,9 +5,11 @@
     justify-content: center;
     background-color: rgb(243, 244, 246);
     margin: 0;
-    height: calc(100vh - 92px);
+    height: calc(100vh - 79px);
     width: 100vw;
     padding-top: 20px;
+    position: relative;
+    top: 79px;
 }
 
 .admin__box-container {

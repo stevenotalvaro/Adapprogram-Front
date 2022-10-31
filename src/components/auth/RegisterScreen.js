@@ -11,7 +11,7 @@ import { useForm } from '../../hooks/useForm'
 export const RegisterScreen = () => {
     
     const dispatch = useDispatch()
-    const {msgError} = useSelector(state => state.ui)
+    const {msgError, loading} = useSelector(state => state.ui)
 
     const [formValues, handleInputChange] = useForm({
         name: '',
@@ -39,7 +39,8 @@ export const RegisterScreen = () => {
     }
 
     const isFormValid = async () => {
-        const loadCodeTeacher2 = await loadCodeTeacher(codigo)
+        let loadCodeTeacher2 = '';
+            
         if (name.trim().length < 5) {
             dispatch(setError('El nombre es requerido'))
             return false
@@ -52,7 +53,15 @@ export const RegisterScreen = () => {
         } else if (password !== password2) {
             dispatch(setError('Contraseña no son iguales'))
             return false
-        } else if (!loadCodeTeacher2) {
+        }
+        if (codigo.trim().length <= 4) {
+            dispatch(setError('Inserte un codigo de maestro valido'))
+            return false
+        } else {
+            loadCodeTeacher2 = await loadCodeTeacher(codigo)
+        }
+        
+        if (!loadCodeTeacher2) {
             dispatch(setError('EL codigo no existe'))
             return false
         }
@@ -111,13 +120,14 @@ export const RegisterScreen = () => {
                 <input
                     type='text'
                     placeholder='Codigo de Maestro'
+                    autoComplete='off'
                     name='codigo'
                     className='auth__input'
                     value={codigo}
                     onChange={handleInputChange}
                 />
 
-                <button type='submit' className='btn btn-primary btn-block'>
+                <button type='submit' className='btn btn-primary btn-block' disabled={loading}>
                     Registrarse
                 </button>
             </form>

@@ -9,6 +9,13 @@
     z-index: 2;
 }
 
+.adaptive__sidebar {
+    position: fixed;
+    z-index: 7;
+    width: 100%;
+    top: 0;
+}
+
 .navbar__teacher-container {
     padding: 0;
     height: 60px;
@@ -43,6 +50,9 @@
 }
 
 .container {
+    position: relative;
+    top: 79px;
+    
     > h1, h3 {
         max-width: 675px;
         text-align: center;

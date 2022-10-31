@@ -13,6 +13,12 @@
     }
 }
 
+.questions,
+.container__kinestesico {
+    position: relative;
+    top: 80px;
+}
+
 @media (min-width:1280px) {
     .nav__container {
         margin: 0;
@@ -213,8 +219,8 @@
         margin-top: 10px;
         transition: all .4s;
         border-radius: 10px;
-        position: absolute;
-        top: -73px;
+        position: fixed;
+        top: 5px;
     }
 
     .nav__close {
