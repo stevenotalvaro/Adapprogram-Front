@@ -13,7 +13,7 @@ export const VerificationScreen = () => {
     <>
       <Sidebar />
       <div className='img__container'>
-        <img src={saludo} />
+        <img alt='saludo' src={saludo} />
         <button className='btn btn-primary' onClick={handleReSend}>
           Enviar nuevo correo
         </button>

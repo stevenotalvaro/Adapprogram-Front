@@ -13,8 +13,6 @@ import "ace-builds/src-noconflict/mode-swift";
 import {
   Button,
   TextField,
-  Select,
-  MenuItem,
   makeStyles,
   createStyles,
   Backdrop,
@@ -139,12 +137,6 @@ function EditorBody() {
     [takeInput, setTakeInput] = React.useState(false),
     [executing, setExecuting] = React.useState(false),
     [input, setInput] = React.useState("");
-
-  let notOwner = false;
-
-  function setNotOwner(bool) {
-    notOwner = bool;
-  }
 
   window.addEventListener("resize", (e) => {
     if (window.innerWidth > 600) {
