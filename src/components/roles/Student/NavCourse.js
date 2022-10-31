@@ -35,10 +35,9 @@ export const NavCourse = memo(() => {
 
                 listElements.forEach(listElement => {
                     listElement.classList.remove('arrow')
-                    let height = 0;
                     let menu = listElement.nextElementSibling;
 
-                    if(menu.clientHeight != '0') {
+                    if(+menu.clientHeight !== 0) {
                         menu.style.height = 0 ;
                         menu.style.opacity = 0 ;
                         setTimeout(() => {
@@ -52,14 +51,14 @@ export const NavCourse = memo(() => {
                 let height = 0;
                 let menu = listElement.nextElementSibling;
                 
-                if(menu.clientHeight == '0') {
+                if(+menu.clientHeight === 0) {
                     menu.style.display = 'block';
                     height = menu.scrollHeight;
                     menu.style.height = height+'px' ;
                     menu.style.opacity = 1 ;
                 }
 
-                if(menu.clientHeight != '0') {
+                if(+menu.clientHeight !== 0) {
                     menu.style.height = 0 ;
                     menu.style.opacity = 0 ;
                     listElement.classList.remove('arrow')
@@ -108,7 +107,7 @@ export const NavCourse = memo(() => {
                 document.querySelector('.content__kinestico-questions').style.display = 'block'
             }
         }
-    }, [urlPlayer])
+    }, [urlPlayer,urlQuestionToDo,learningStyle])
 
   return (
     <nav className='nav container' id="nav">
@@ -126,7 +125,7 @@ export const NavCourse = memo(() => {
                         
                         {
                             data.map((son, i)=> {
-                                let content = i == 0  ? course[i].variables.content : i === 1 ? course[i].decisionStructures.content : i === 2 ? course[i].iterativeStructures.content : course[i].iterativeFunctions.content 
+                                let content = i === 0  ? course[i].variables.content : i === 1 ? course[i].decisionStructures.content : i === 2 ? course[i].iterativeStructures.content : course[i].iterativeFunctions.content 
                                 let requireAnswer = i === 0 ? course[i].variables.requireAnswer : i === 1 ? course[i].decisionStructures.requireAnswer : i === 2 ? course[i].iterativeStructures.requireAnswer : course[i].iterativeFunctions.requireAnswer 
                                 
                                 return (<li key={i} className='list__item list__item--click nav__item'>
@@ -153,6 +152,10 @@ export const NavCourse = memo(() => {
 
                         }
 
+                        <a style={{textDecoration: 'none', textAlign: 'center'}} rel="noreferrer" target="_blank" href='https://forms.gle/Gzdsy9FPFuLr8X6e6' className='btn btn-primary btn-block' hr="">
+                            Encuesta
+                        </a>
+
 
                     </ul>
                     
@@ -161,10 +164,10 @@ export const NavCourse = memo(() => {
         }
 
         <button style={{transform: `scale(${megaMenuSelected ? 1 : 0})`,backgroundColor: 'white'}} onClick={() => (setMegaMenuSelected(!megaMenuSelected))} className='btn nav__close'>
-            <img src={closeImg} className='nav__icon' />
+            <img alt='close-img' src={closeImg} className='nav__icon' />
         </button>
         <button style={{transform: `scale(${megaMenuSelected ? 0 : 1})`}} onClick={() => (setMegaMenuSelected(!megaMenuSelected))} className='btn nav__hamburguer'>
-            <img src={menuImg} className='nav__icon' />
+            <img alt='menu-img' src={menuImg} className='nav__icon' />
         </button>
 
         
@@ -181,7 +184,7 @@ export const NavCourse = memo(() => {
                 </div>
         }
         {
-            (urlPlayer && viewSelected && (learningStyle == 'kinestesico'))  &&
+            (urlPlayer && viewSelected && (learningStyle === 'kinestesico'))  &&
                 <div className='container__kinestesico'>
                     <div className='content__kinestesico'>
                     </div>
