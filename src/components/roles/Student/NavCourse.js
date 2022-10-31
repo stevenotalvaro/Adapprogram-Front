@@ -152,13 +152,7 @@ export const NavCourse = memo(() => {
 
                         }
 
-                        <a style={{textDecoration: 'none', textAlign: 'center'}} rel="noreferrer" target="_blank" href='https://forms.gle/Gzdsy9FPFuLr8X6e6' className='btn btn-primary btn-block' hr="">
-                            Encuesta
-                        </a>
-
-
                     </ul>
-                    
                     )
                     
         }
