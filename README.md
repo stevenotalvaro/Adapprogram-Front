@@ -35,7 +35,7 @@ Backend: https://github.com/adapprogram/backend
 -steven-otalvaro@yopmail.com
 -1234567
 
-  o bien te puedes registrar utilizando el codigo de maestro ###`2USTV`, y hacer todos las funcionalidades del rol estudiante
+  o bien te puedes registrar utilizando el codigo de maestro `2USTV`, y hacer todos las funcionalidades del rol estudiante
   
 ##Para utilizar una cuenta de Administrador y ver sus funcionalidades, contactese al correo `fabio.otalvaro@correounivalle.edu.co` para validar y dar credenciales
 
