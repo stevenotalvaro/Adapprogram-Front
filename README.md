@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+## ADAPPROGRAM
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Addaprogram es un prototipo de web enfocado de aprendizaje adaptativo.
 
-## Available Scripts
+Esta dividido en su parte Frontend y su parte Backend
 
-In the project directory, you can run:
+La parte Frontend esta realizada en React
 
-### `npm start`
+y parte Backend esta realizada en Python
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Descargar
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Descargue ambos respositorios
 
-### `npm test`
+Frontend: https://github.com/stevenotalvaro/Adapprogram-Front
+Backend: https://github.com/adapprogram/backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instalcion repositorio Frontend
 
-### `npm run build`
+-Al descargar el repositorio frontend, ejecute `npm install` para instalacion los modulos de node (recuerde tener instalado npm y node)
+-Ejecute `npm start` para iniciar el repositorio
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instalcion repositorio Backend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-Al descargar el repositorio backend, ejecute el archivo main.py para levantar el servidor
+-asegurese que el puerto que esta corriendo sea igual al que esta declarado en el repositorio fronted en el archivo ###`.env.development`, en este caso el puerto es el 5000 con direccion completa `http://localhost:5000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Logueos
 
-### `npm run eject`
+##Para utilizar una cuenta de profesor y ver sus funcionalidades, se puede utlizar las siguientes credenciales
+-fabio.otalvaro@correounivalle.edu.co
+-Adapprogram2022
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+##Para utilizar una cuenta de estudiante y ver sus funcionalidades, se puede utlizar las siguientes credenciales
+-steven-otalvaro@yopmail.com
+-1234567
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  o bien te puedes registrar utilizando el codigo de maestro `2USTV`, y hacer todos las funcionalidades del rol estudiante
+  
+##Para utilizar una cuenta de Administrador y ver sus funcionalidades, contactese al correo `fabio.otalvaro@correounivalle.edu.co` para validar y dar credenciales
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
