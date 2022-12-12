@@ -1,4 +1,3 @@
-import { CenterFocusStrong } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -25,9 +24,9 @@ export const GroupScreen = () => {
 
     useEffect(() => {
         
-      groupsStudents?.map(data => {
+      groupsStudents?.map(data => (
           data.styleLearning?.learningStyle === 'visual' ? visual++ : data.styleLearning?.learningStyle === 'auditivo' ? auditivo++ : data.styleLearning?.learningStyle === 'kinestesico' ? kinestico++ : noRealizado++
-      })
+      ))
     
       setDataChart({
           labels:['Visual', 'Auditivo', 'Kinestesico', 'No Realizado'],
@@ -46,7 +45,7 @@ export const GroupScreen = () => {
           }]
       })
       
-    }, [groupsStudents])
+    }, [groupsStudents, visual, auditivo, kinestico, noRealizado])
 
     const handleCLick = (e) => {
         e.preventDefault();

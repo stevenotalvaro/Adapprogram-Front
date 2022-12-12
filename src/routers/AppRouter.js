@@ -49,7 +49,7 @@ export const AppRouter = () => {
       }
       setChecking(false)
     })
-  }, [dispatch, setChecking,  setIsLoggedIn, loadTeachers, setIsVerified])
+  }, [dispatch, setChecking,  setIsLoggedIn, setIsVerified])
 
   if(checking) {
     return (

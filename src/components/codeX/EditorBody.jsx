@@ -32,9 +32,6 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "grid",
       gridGap: "0 20px",
       gridTemplateRows: "calc(100% - 200px) 200px",
-      // "& .ace_selection": {
-      //   background: "#ff711e36 !important"
-      // },
       "& .ace_gutter": {
         backgroundColor: "#19202b",
       },
@@ -179,7 +176,7 @@ function EditorBody() {
 
     var config = {
       method: "post",
-      url: "https://codex-api-backend.herokuapp.com/",
+      url: "https://code-x-api.onrender.com/",
       headers: {
         "Content-Type": "application/json",
       },

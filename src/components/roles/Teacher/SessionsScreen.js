@@ -70,10 +70,10 @@ export const SessionsScreen = () => {
         } else if(grupo.trim().length <= 1 ) {
             dispatch(setError('Por favor inserta un grupo valido; Ej 50'))
             return false;
-        } else if (jornada != 'Diurna' && jornada != 'Nocturna') {
+        } else if (jornada !== 'Diurna' && jornada !== 'Nocturna') {
             dispatch(setError('Por faovr selecciona una jornada valida')) 
             return false;
-        } else if (codigo != codigo) {
+        } else if (codigo !== codigo) {
             dispatch(setError('No se puede modificar el codigo')) 
             return false;
         }

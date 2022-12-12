@@ -338,7 +338,7 @@ export const QuestionsCourse = ({url}) => {
                                                     </select>
 
                                                         {
-                                                            answerOne != '' ? <AnswerQuestion petition={answerOne} /> : ''
+                                                            answerOne !== '' ? <AnswerQuestion petition={answerOne} /> : ''
                                                         }
                                                         </>
                                                 )
@@ -363,7 +363,7 @@ export const QuestionsCourse = ({url}) => {
                                                         </select>
 
                                                         {
-                                                            answerTwo != '' ? <AnswerQuestion petition={answerTwo} /> : ''
+                                                            answerTwo !== '' ? <AnswerQuestion petition={answerTwo} /> : ''
                                                         }
                                                         </>
                                                         )
@@ -384,7 +384,7 @@ export const QuestionsCourse = ({url}) => {
                                                         </select>
 
                                                         {
-                                                            answerThree != '' ? <AnswerQuestion petition={answerThree} /> : ''
+                                                            answerThree !== '' ? <AnswerQuestion petition={answerThree} /> : ''
                                                         }
                                                         </>
                                                         )
@@ -404,7 +404,7 @@ export const QuestionsCourse = ({url}) => {
                                                             <option  value={4}>4</option>
                                                         </select>
                                                         {
-                                                            answerFour != '' ? <AnswerQuestion petition={answerFour} /> : ''
+                                                            answerFour !== '' ? <AnswerQuestion petition={answerFour} /> : ''
                                                         }
                                                         </>)
                                                     : ( i+1 === 5 ) 
@@ -423,7 +423,7 @@ export const QuestionsCourse = ({url}) => {
                                                             <option  value={4}>4</option>
                                                         </select>
                                                         {
-                                                            answerFive != '' ? <AnswerQuestion petition={answerFive} /> : ''
+                                                            answerFive !== '' ? <AnswerQuestion petition={answerFive} /> : ''
                                                         }
                                                         </>)
                                                     : ( i+1 === 6 ) 
@@ -443,7 +443,7 @@ export const QuestionsCourse = ({url}) => {
                                                         </select>
 
                                                         {
-                                                            answerSix != '' ? <AnswerQuestion petition={answerSix} /> : ''
+                                                            answerSix !== '' ? <AnswerQuestion petition={answerSix} /> : ''
                                                         }
                                                         </>)
                                                     : ( i+1 === 7 ) 
@@ -462,7 +462,7 @@ export const QuestionsCourse = ({url}) => {
                                                             <option  value={4}>4</option>
                                                         </select>
                                                         {
-                                                            answerSeven != '' ? <AnswerQuestion petition={answerSeven} /> : ''
+                                                            answerSeven !== '' ? <AnswerQuestion petition={answerSeven} /> : ''
                                                         }
                                                         </>)
                                                     : (<><select
@@ -480,7 +480,7 @@ export const QuestionsCourse = ({url}) => {
                                                         <option  value={4}>4</option>
                                                     </select>
                                                         {
-                                                            answerEight != '' ? <AnswerQuestion petition={answerEight} /> : ''
+                                                            answerEight !== '' ? <AnswerQuestion petition={answerEight} /> : ''
                                                         }
                                                     </>)
                                                 

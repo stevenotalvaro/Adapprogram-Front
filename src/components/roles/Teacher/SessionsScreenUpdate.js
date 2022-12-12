@@ -32,13 +32,6 @@ export const SessionsScreenUpdate = () => {
         return true;
     }
 
-    const currentTime = new Date();
-    const year = currentTime.getFullYear()
-    const currentMonth = currentTime.getMonth() + 1;
-    let peri = 0;
-
-    currentMonth <= 6 ? peri = 1 : peri = 2;
-
     const [formValues, handleInputChange, reset] = useForm(group)
 
     const handleUpdate = (e) =>{
